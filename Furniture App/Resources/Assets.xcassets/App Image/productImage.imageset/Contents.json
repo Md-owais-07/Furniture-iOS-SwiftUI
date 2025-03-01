@@ -1,0 +1,23 @@
+{
+  "images" : [
+    {
+      "filename" : "BRO-321-OC_2-removebg-preview 2.png",
+      "idiom" : "universal",
+      "scale" : "1x"
+    },
+    {
+      "filename" : "BRO-321-OC_2-removebg-preview 2@2x.png",
+      "idiom" : "universal",
+      "scale" : "2x"
+    },
+    {
+      "filename" : "BRO-321-OC_2-removebg-preview 2@3x.png",
+      "idiom" : "universal",
+      "scale" : "3x"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}

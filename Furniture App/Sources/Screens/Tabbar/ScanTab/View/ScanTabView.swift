@@ -1,0 +1,25 @@
+//
+//  ScanBarView.swift
+//  Furniture App
+//
+//  Created by Owais on 1/27/25.
+//
+
+import SwiftUI
+
+struct ScanTabView: View {
+    var body: some View {
+        NavigationStack {
+            ZStack {
+                Color("AppColor").ignoresSafeArea(.all)
+                VStack {
+                    Text("Profile Page")
+                }
+            }
+        }
+    }
+}
+
+#Preview {
+    ScanTabView()
+}

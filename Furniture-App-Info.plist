@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CFBundleURLTypes</key>
+	<array>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+		</dict>
+		<dict/>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+		</dict>
+		<dict/>
+	</array>
+	<key>UIAppFonts</key>
+	<array>
+		<string>Switzer-Bold.otf</string>
+		<string>Switzer-Light.otf</string>
+		<string>Switzer-Extrabold.otf</string>
+		<string>Switzer-Medium.otf</string>
+		<string>Switzer-Regular.otf</string>
+		<string>Switzer-Semibold.otf</string>
+	</array>
+	<key>UILaunchScreen</key>
+	<dict>
+		<key>Launch screen interface file base name</key>
+		<string>LaunchScreen</string>
+	</dict>
+</dict>
+</plist>

@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="23504" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Y6W-OH-hqX">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23506"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="s0d-6b-0kx">
+            <objects>
+                <viewController id="Y6W-OH-hqX" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="5EZ-qb-Rvc">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="qod-6d-As3">
+                                <rect key="frame" x="109.66666666666667" y="348.66666666666669" width="173.66666666666663" height="154.66666666666669"/>
+                                <subviews>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="AppLogo" translatesAutoresizingMaskIntoConstraints="NO" id="teP-u6-Usb">
+                                        <rect key="frame" x="30.666666666666664" y="0.0" width="112.66666666666669" height="110"/>
+                                        <accessibility key="accessibilityConfiguration">
+                                            <accessibilityTraits key="traits" image="YES" searchField="YES"/>
+                                        </accessibility>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="110" id="vCV-oq-CMK"/>
+                                        </constraints>
+                                    </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Crafty Furniture" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SD5-L5-GXt">
+                                        <rect key="frame" x="0.0" y="126.00000000000001" width="173.66666666666666" height="28.666666666666671"/>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="24"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                            </stackView>
+                            <imageView clipsSubviews="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Google" translatesAutoresizingMaskIntoConstraints="NO" id="n6l-x0-ThN">
+                                <rect key="frame" x="136.66666666666666" y="366" width="119.99999999999997" height="120"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="120" id="7EW-PP-e7L"/>
+                                    <constraint firstAttribute="width" constant="120" id="TBH-rm-Nvk"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
+                        <color key="backgroundColor" name="primaryColor"/>
+                        <constraints>
+                            <constraint firstItem="qod-6d-As3" firstAttribute="centerY" secondItem="5EZ-qb-Rvc" secondAttribute="centerY" id="71i-Yp-hnd"/>
+                            <constraint firstItem="n6l-x0-ThN" firstAttribute="centerY" secondItem="5EZ-qb-Rvc" secondAttribute="centerY" id="bH5-ZS-M4J"/>
+                            <constraint firstItem="qod-6d-As3" firstAttribute="centerX" secondItem="5EZ-qb-Rvc" secondAttribute="centerX" id="mUL-JK-Fbd"/>
+                            <constraint firstItem="n6l-x0-ThN" firstAttribute="centerX" secondItem="5EZ-qb-Rvc" secondAttribute="centerX" id="uCd-8Z-kJZ"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="subviews">
+                                <exclude reference="n6l-x0-ThN"/>
+                            </mask>
+                        </variation>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="140" y="4"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="AppLogo" width="112.66666412353516" height="100"/>
+        <image name="Google" width="24" height="24"/>
+        <namedColor name="primaryColor">
+            <color red="0.047058823529411764" green="0.54117647058823526" blue="0.4823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>
