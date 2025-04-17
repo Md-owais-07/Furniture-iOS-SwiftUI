@@ -21,6 +21,10 @@ class NavigationManager: ObservableObject {
         }
     }
     
+    func resetToLogin() {
+        path = NavigationPath()
+    }
+    
     
     
     

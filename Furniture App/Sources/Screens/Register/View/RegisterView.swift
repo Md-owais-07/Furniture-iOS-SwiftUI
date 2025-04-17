@@ -23,7 +23,7 @@ struct RegisterView: View {
                 
                 HStack {
                     TopCircularButtonView(action: {
-                        //
+                        dismiss()
                     }, imageName: "backBtn")
                     Spacer()
                 }
@@ -89,6 +89,7 @@ struct RegisterView: View {
                 Spacer()
             }
             .navigationBarBackButtonHidden(true)
+            .background(EnableSwipeBackGesture())
             .padding(.horizontal, 24)
         }
     }

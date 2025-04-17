@@ -9,6 +9,7 @@ import SwiftUI
 
 struct ProductCardView: View {
     var product: Products
+    
     @EnvironmentObject var cartManager: CartManager
     @State private var isAddedToCart: Bool = false
     @State private var quantity: Int = 0

@@ -9,27 +9,34 @@ import SwiftUI
 import FirebaseAuth
 
 struct LoginView: View {
-    @State private var emailField: String = ""
-    @State private var passwordField: String = ""
+    @State private var emailField: String = "t1@gmail.com"
+    @State private var passwordField: String = "abcd12"
     @State private var isNavigating = false
+    @State private var isLoading: Bool = false
     @AppStorage("isLoggedIn") private var isLoggedIn = false
     @StateObject private var viewModel = LoginViewModel()
+    @State private var toast: Toast? = nil
     
     var body: some View {
         NavigationStack() {
             ZStack {
                 Color("AppColor").ignoresSafeArea(.all)
                 
+                if isLoading {
+                    LottieView(animationName: "App-animation", play: true, loopMode: .loop)
+                        .frame(width: 200, height: 200)
+                }
+                
                 VStack {
                     
-                    HStack {
-                        TopCircularButtonView(action: {
-                            //
-                        }, imageName: "backBtn")
-                        Spacer()
-                    }
-                    .padding(.top, 10)
-                    .padding(.bottom, 32)
+//                    HStack {
+//                        TopCircularButtonView(action: {
+//                            //
+//                        }, imageName: "backBtn")
+//                        Spacer()
+//                    }
+//                    .padding(.top, 10)
+//                    .padding(.bottom, 32)
                     
                     VStack(alignment: .leading, spacing: 8) {
                         Text("Welcome Back")
@@ -43,6 +50,7 @@ struct LoginView: View {
                     }
                     .frame(maxWidth: .infinity, alignment: .leading)
                     .padding(.bottom, 32)
+                    .padding(.top, 98)
                     
                     VStack(spacing: 16) {
                         CustomTextFieldView(title: "Email", placeholder: "Enter Your Email", text: $emailField)
@@ -81,15 +89,23 @@ struct LoginView: View {
                             CustomButtonView(action: {
                                 if emailField.isEmpty || passwordField.isEmpty {
                                     print("Email and Password fields are required")
+                                    toast = Toast(style: .error, message: "Email and Password fields are required")
                                 } else if !emailField.contains("@") {
                                     print("Enter valid email")
+                                    toast = Toast(style: .error, message: "Enter valid email address")
                                 } else if passwordField.count < 6 {
                                     print("Password should be atleast 6 characters")
+                                    toast = Toast(style: .error, message: "Password should be atleast 6 characters")
                                 } else {
-                                    viewModel.loginWithFirebase(email: emailField, password: passwordField) { result in
-                                        if result {
-                                            isLoggedIn = true
-                                            isNavigating = true
+                                    isLoading = true
+                                    DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+                                        toast = Toast(style: .success, message: "Login Successful")
+                                        viewModel.loginWithFirebase(email: emailField, password: passwordField) { result in
+                                            if result {
+                                                isLoading = false
+                                                isLoggedIn = true
+                                                isNavigating = true
+                                            }
                                         }
                                     }
                                 }
@@ -126,9 +142,11 @@ struct LoginView: View {
                     Spacer()
                 }
                 .navigationBarBackButtonHidden(true)
+                .background(EnableSwipeBackGesture())
                 .padding(.horizontal, 24)
             
             }
+            .toastView(toast: $toast)
         }
     }
 }

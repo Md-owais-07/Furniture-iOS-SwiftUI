@@ -63,11 +63,12 @@ struct BottomButtonView: View {
                     //
                 }, title: "Add To Cart", isImageVisible: true, imageName: "adt", bgColor: Color("primaryColor"), textColor: .white)
             }
-            .padding([.horizontal, .vertical], 24)
+            .padding(.horizontal, 24)
+            .padding(.top, 24)
+            .padding(.bottom, 12)
             .background(.white)
-            .cornerRadius(20)
-            
-        }.ignoresSafeArea(.all, edges: .bottom)
+            .clipShape(RoundedCorner(radius: 24, corners: [.topLeft, .topRight]))
+        }
     }
 }
 

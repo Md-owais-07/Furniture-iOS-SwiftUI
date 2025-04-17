@@ -13,35 +13,36 @@ struct FavouriteTabView: View {
             ZStack {
                 Color("AppColor").ignoresSafeArea(.all)
                 
-                    VStack(spacing: 0) {
-                        HStack(spacing: 0) {
-                            TopCircularButtonView(action: {
-                                //
-                            }, imageName: "backBtn")
-                            Spacer()
-                            
+                VStack(spacing: 0) {
+                    ZStack {
+                        ZStack {
                             Text("Favourite")
                                 .font(Font.custom("Switzer-Medium", size: 20))
                                 .foregroundStyle(Color.textClr)
-                            
+                        }
+                        
+                        HStack {
                             Spacer()
                             TopCircularButtonView(action: {
-                                //
+                                //       
                             }, imageName: "fav")
                         }
-                        .padding(.top, 8)
-                        .frame(height: 48)
                         
-                        ScrollView {
-                            
-                        }
                     }
-                    .padding(.horizontal, 24)
+                    .padding(.top, 8)
+                    .frame(height: 48)
+                    
+                    ScrollView {
+                        
+                    }
                 }
+                .padding(.horizontal, 24)
             }
+        }
         
     }
 }
+
 
 #Preview {
     FavouriteTabView()

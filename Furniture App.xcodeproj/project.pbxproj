@@ -12,6 +12,7 @@
 		E9A954322D6C564B00B5B85E /* FirebaseCrashlytics in Frameworks */ = {isa = PBXBuildFile; productRef = E9A954312D6C564B00B5B85E /* FirebaseCrashlytics */; };
 		E9A954342D6C564B00B5B85E /* FirebaseDatabase in Frameworks */ = {isa = PBXBuildFile; productRef = E9A954332D6C564B00B5B85E /* FirebaseDatabase */; };
 		E9A954362D6C564B00B5B85E /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = E9A954352D6C564B00B5B85E /* FirebaseFirestore */; };
+		E9F269A32D9D8D910028D22E /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = E9F269A22D9D8D910028D22E /* Lottie */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +37,7 @@
 				E9A954342D6C564B00B5B85E /* FirebaseDatabase in Frameworks */,
 				E9A954362D6C564B00B5B85E /* FirebaseFirestore in Frameworks */,
 				E9A9542E2D6C564B00B5B85E /* FirebaseAuth in Frameworks */,
+				E9F269A32D9D8D910028D22E /* Lottie in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -83,6 +85,7 @@
 				E9A954312D6C564B00B5B85E /* FirebaseCrashlytics */,
 				E9A954332D6C564B00B5B85E /* FirebaseDatabase */,
 				E9A954352D6C564B00B5B85E /* FirebaseFirestore */,
+				E9F269A22D9D8D910028D22E /* Lottie */,
 			);
 			productName = "Furniture App";
 			productReference = E95E02AC2D451961001AF7EE /* Furniture App.app */;
@@ -114,6 +117,7 @@
 			minimizedProjectReferenceProxies = 1;
 			packageReferences = (
 				E9A9542C2D6C564B00B5B85E /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				E9F269A12D9D8D910028D22E /* XCRemoteSwiftPackageReference "lottie-ios" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = E95E02AD2D451961001AF7EE /* Products */;
@@ -275,16 +279,17 @@
 				DEVELOPMENT_ASSET_PATHS = "\"Furniture App/Preview Content\"";
 				DEVELOPMENT_TEAM = 4NP4L6636N;
 				ENABLE_PREVIEWS = YES;
+				FRAMEWORK_SEARCH_PATHS = "";
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Furniture-App-Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = Furniture;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.shopping";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
 				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -319,10 +324,10 @@
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.shopping";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
 				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -373,6 +378,14 @@
 				minimumVersion = 11.8.1;
 			};
 		};
+		E9F269A12D9D8D910028D22E /* XCRemoteSwiftPackageReference "lottie-ios" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/airbnb/lottie-ios.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 4.5.1;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -400,6 +413,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = E9A9542C2D6C564B00B5B85E /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseFirestore;
+		};
+		E9F269A22D9D8D910028D22E /* Lottie */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = E9F269A12D9D8D910028D22E /* XCRemoteSwiftPackageReference "lottie-ios" */;
+			productName = Lottie;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

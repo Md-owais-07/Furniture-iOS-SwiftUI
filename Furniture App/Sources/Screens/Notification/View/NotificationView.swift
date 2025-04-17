@@ -9,15 +9,38 @@ import SwiftUI
 
 struct NotificationView: View {
     @Environment(\.dismiss) private var dismiss
+    @State private var isNotificationEmpty: Bool = true
+    @State private var showNoNotificationsText: Bool = false
     
     var body: some View {
         ZStack {
             Color("AppColor").ignoresSafeArea(.all)
             
-            VStack {
+            VStack(spacing: -25) {
+                if isNotificationEmpty {
+                    LottieView(animationName: "Notifications", play: true, loopMode: .playOnce)
+                        .frame(width: 150, height: 150)
+                }
                 
+                if isNotificationEmpty {
+                    if showNoNotificationsText {
+                        Text("No notifications found")
+                            .font(Font.custom("Switzer-Regular", size: 16))
+                            .foregroundStyle(Color.subTextClr)
+                            .frame(height: 24)
+                    }
+                }
+            }
+            .onAppear {
+                if isNotificationEmpty {
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
+                        showNoNotificationsText = true
+                    }
+                }
+            }
+            
+            VStack {
                 ZStack {
-                    
                     ZStack {
                         Text("Notifications")
                             .font(Font.custom("Switzer-Medium", size: 20))
@@ -28,17 +51,19 @@ struct NotificationView: View {
                         TopCircularButtonView(action: {
                             dismiss()
                         }, imageName: "backBtn")
+                        
                         Spacer()
-                        Button {
-                            
-                        } label: {
-                            Text("Clear All")
-                                .font(Font.custom("Switzer-Regular", size: 16))
-                                .foregroundStyle(Color.subTextClr)
+                        
+                        if !isNotificationEmpty {
+                            Button {
+                                //
+                            } label: {
+                                Text("Clear All")
+                                    .font(Font.custom("Switzer-Regular", size: 16))
+                                    .foregroundStyle(Color.subTextClr)
+                            }
                         }
                     }
-                    
-                    
                 }
                 .padding(.top, 8)
                 .frame(height: 48)
@@ -46,12 +71,13 @@ struct NotificationView: View {
                 Spacer()
                 
                 ScrollView {
-                    
+                    //
                 }
                 
             }
             .padding(.horizontal, 24)
             .navigationBarBackButtonHidden(true)
+            .background(EnableSwipeBackGesture())
         }
     }
 }

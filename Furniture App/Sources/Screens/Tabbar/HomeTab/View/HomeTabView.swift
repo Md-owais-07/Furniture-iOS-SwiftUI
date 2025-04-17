@@ -9,12 +9,13 @@ import SwiftUI
 
 struct HomeTabView: View {
     @State private var searchText: String = ""
-    @EnvironmentObject var navigationManager: NavigationManager
     @State private var path = NavigationPath()
     
+    @EnvironmentObject var navigationManager: NavigationManager
     @EnvironmentObject var sessionManager: UserSessionManager
     
     var body: some View {
+        
         NavigationStack(path: $path) {
             ZStack {
                 Color("AppColor").ignoresSafeArea(.all)
@@ -38,8 +39,6 @@ struct HomeTabView: View {
                             TopCircularButtonView(action: {
                                 path.append("NotificationView")
                             }, imageName: "notification")
-                            
-
                         }
                         .navigationDestination(for: String.self, destination: { destination in
                             if destination == "NotificationView" {
@@ -73,53 +72,26 @@ struct HomeTabView: View {
                         .padding(.top, 24)
                         .padding(.horizontal, 24)
                         
-                        //  Text
-                        Text("Special Offers")
-                            .font(Font.custom("Switzer-Semibold", size: 16))
-                            .foregroundStyle(.textClr)
-                            .padding(.top, 24)
-                            .frame(maxWidth: .infinity, alignment: .leading)
-                            .padding(.horizontal, 24)
-                        
-                        // Image Horizontal Scrolling
-                        ImageScrollView()
-                            .padding(.top, 16)
-                        
-                        //   Ctegory view
-                        CategoryListView()
-                            .padding(.vertical, 24)
-                        
-                        //  Most Interested collection
-                        HStack {
-                            Text("Most Interested")
+                        VStack(spacing: 0) {
+                            //  Text
+                            Text("Special Offers")
                                 .font(Font.custom("Switzer-Semibold", size: 16))
-                                .foregroundStyle(Color.textClr)
+                                .foregroundStyle(.textClr)
+                                .padding(.top, 24)
+                                .frame(maxWidth: .infinity, alignment: .leading)
+                                .padding(.horizontal, 24)
                             
-                            Spacer()
-                            Button {
-                                //
-                            } label: {
-                                Text("View All")
-                                    .font(Font.custom("Switzer-Regular", size: 13))
-                                    .foregroundStyle(Color.primaryButton)
-                            }
                             
+                            // Image Horizontal Scrolling
+                            ImageScrollView()
+                                .padding(.top, 16)
+                            
+                            //   Ctegory view
+                            CategoryListView(product: productsDataArray[0])
+                                .padding(.vertical, 24)
                         }
-                        .padding(.horizontal, 24)
-                        .padding(.bottom, 16)
                         
-                        //  Product List
-                        ScrollView(.horizontal, showsIndicators: false) {
-                            HStack(spacing: -8) {
-                                ForEach(productsDataArray) { product in
-                                    NavigationLink(destination: ProductDetailView(product: product)) {
-                                        ProductCardView(product: product)
-                                    }
-                                }
-                            }
-                        }.padding(.bottom, 24)
-                        
-                        //  Most Popular collection
+                        // Popular collection
                         HStack {
                             Text("Popular")
                                 .font(Font.custom("Switzer-Semibold", size: 16))
