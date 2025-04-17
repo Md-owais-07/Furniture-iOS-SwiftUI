@@ -13,7 +13,7 @@ struct ScanTabView: View {
             ZStack {
                 Color("AppColor").ignoresSafeArea(.all)
                 VStack {
-                    Text("Profile Page")
+                    Text("Coming soon...")
                 }
             }
         }

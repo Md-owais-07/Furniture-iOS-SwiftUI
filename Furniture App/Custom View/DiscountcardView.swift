@@ -94,9 +94,10 @@ struct DiscountcardView: View {
             }
             .padding(.horizontal, 16)
         }
-        .frame(minWidth: 300, maxHeight: 150) // This ensures the overall size
+        .frame(minWidth: 300, maxHeight: 150)
         .cornerRadius(14)
-        .padding(.leading, 24)
+        .padding(.horizontal, 24)
+        .padding(.vertical, 0)
     }
 }
 

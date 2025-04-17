@@ -9,12 +9,16 @@ import Foundation
 import FirebaseAuth
 
 class ProfileViewModel: ObservableObject {
+    @Published var isLoggedOut = false
     
-    func logout() {
+    func logout(navigationManager: NavigationManager) {
         do {
             try Auth.auth().signOut()
-        } catch(let err) {
-            print("Logout error wit: \(err.localizedDescription)")
+            DispatchQueue.main.async {
+                navigationManager.resetToLogin()
+            }
+        } catch {
+            print("Logout error: \(error.localizedDescription)")
         }
     }
 }

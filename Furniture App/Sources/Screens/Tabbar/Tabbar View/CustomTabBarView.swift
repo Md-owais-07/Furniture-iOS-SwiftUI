@@ -9,7 +9,7 @@ import SwiftUI
 
 struct CustomTabBarView: View {
     @State private var selectedTab: Tab = .home
-
+    
     enum Tab: String, CaseIterable {
         case home = "home"
         case favourite = "favourite"
@@ -19,14 +19,14 @@ struct CustomTabBarView: View {
     }
     
     var body: some View {
-        ZStack(alignment: .bottom) {  
+        ZStack(alignment: .bottom) {
             TabView(selection: $selectedTab) {
                 HomeTabView()
                     .tag(Tab.home)
                 
                 FavouriteTabView()
                     .tag(Tab.favourite)
-                    
+                
                 ScanTabView()
                     .tag(Tab.scan)
                 
@@ -36,7 +36,6 @@ struct CustomTabBarView: View {
                 ProfileTabView()
                     .tag(Tab.profile)
             }
-            .tabViewStyle(.tabBarOnly)
             
             // Custom Tab Bar
             VStack(spacing: 0) {
@@ -45,13 +44,35 @@ struct CustomTabBarView: View {
                         tabButton(for: tab)
                     }
                 }
+                
                 .padding(.bottom, -10)
                 .frame(height: 50)
                 .background(Color.white)
             }
         }
         .navigationBarBackButtonHidden(true)
+//        .background(EnableSwipeBackGesture())
     }
+    
+//    private func tabButton(for tab: Tab) -> some View {
+//        Button(action: {
+//            withAnimation { selectedTab = tab }
+//        }) {
+//            VStack(spacing: 5) {
+//                Image(tab.rawValue)
+//                    .resizable()
+//                    .renderingMode(.template)
+//                    .scaledToFit()
+//                    .frame(width: 20, height: 20)
+//                    .foregroundColor(selectedTab == tab ? Color("primaryColor") : Color("subTextClr"))
+//                
+//                Text(tabTitle(for: tab))
+//                    .font(.system(size: 12, weight: .medium))
+//                    .foregroundColor(selectedTab == tab ? Color("primaryColor") : Color("subTextClr"))
+//            }
+//        }
+//        .frame(maxWidth: .infinity)
+//    }
     
     private func tabButton(for tab: Tab) -> some View {
         Button(action: {
@@ -60,16 +81,16 @@ struct CustomTabBarView: View {
             if tab == .scan {
                 VStack {
                     ZStack {
-                        RoundedRectangle(cornerRadius: 70)
-                            .fill(Color("AppColor"))
-                            .frame(width: 70, height: 65)
-                            .clipShape(Rectangle().offset(y: 30))
-                            .offset(y: 3)
+                        //                        RoundedRectangle(cornerRadius: 70)
+                        //                            .fill(Color("AppColor"))
+                        //                            .frame(width: 70, height: 65)
+                        //                            .clipShape(Rectangle().offset(y: 30))
+                        //                            .offset(y: 3)
                         
                         Circle()
                             .fill(Color("primaryColor"))
-                            .frame(width: 52, height: 52)
-//                                                    .shadow(color: Color("primaryColor").opacity(0.3), radius: 10, x: 0, y: 4)
+                            .frame(width: 48, height: 48)
+                        //                                                    .shadow(color: Color("primaryColor").opacity(0.3), radius: 10, x: 0, y: 4)
                         
                         Image(tab.rawValue)
                             .resizable()
@@ -79,7 +100,7 @@ struct CustomTabBarView: View {
                             .foregroundColor(.white)
                     }
                 }
-                .offset(y: -35)
+                //                .offset(y: -35)
             } else {
                 VStack(spacing: 5) {
                     Image(tab.rawValue)
@@ -102,7 +123,7 @@ struct CustomTabBarView: View {
         switch tab {
         case .home: return "Home"
         case .favourite: return "Favourite"
-        case .scan: return ""
+        case .scan: return "Scan"
         case .shopping: return "Shopping"
         case .profile: return "Profile"
         }
