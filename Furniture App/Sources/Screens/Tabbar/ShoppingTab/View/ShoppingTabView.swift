@@ -10,6 +10,7 @@ import SwiftUI
 struct ShoppingTabView: View {
     @EnvironmentObject var cartManager: CartManager
     @State private var quantity: Int = 0
+    @State private var navigateToNext = false
     
     var body: some View {
         NavigationStack {
@@ -164,20 +165,23 @@ struct ShoppingTabView: View {
                                 
                             }
                             .padding([.horizontal, .vertical], 24)
-                            .frame(maxWidth: .infinity, alignment: .leading)
+//                            .frame(maxWidth: .infinity, alignment: .leading)
                             
                             Spacer()
                             
                             CustomButtonView(action: {
-                                //
+                                navigateToNext = true
                             }, title: "Check Out")
                             .padding(.horizontal, 24)
-                            .padding(.bottom, 12)
+                            .padding(.bottom, 14)
                         }
                         .frame(maxWidth: .infinity, maxHeight: 268)
                         .background(.white)
                         .clipShape(RoundedCorner(radius: 24, corners: [.topLeft, .topRight]))
                     }
+                }
+                .navigationDestination(isPresented: $navigateToNext) {
+                    CheckoutView()
                 }
             }
         }

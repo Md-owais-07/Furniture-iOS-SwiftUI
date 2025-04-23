@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct FavouriteTabView: View {
+    
     var body: some View {
         NavigationStack {
             ZStack {
@@ -37,6 +38,7 @@ struct FavouriteTabView: View {
                     }
                 }
                 .padding(.horizontal, 24)
+                
             }
         }
         

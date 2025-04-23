@@ -13,48 +13,16 @@ struct BottomButtonView: View {
     
     var body: some View {
         
-        VStack(spacing: 0) {
+        VStack() {
             Spacer()
             VStack(spacing: 0) {
                 HStack(spacing: 10) {
                     
-                    
                     ProductQuantityButton(quantity: $quantity)
-                    
-                    
-//                    HStack(spacing: 8) {
-//                        Button {
-//                            quantity -= 1
-//                        } label: {
-//                            Image(systemName: "minus")
-//                                .scaledToFit()
-//                                .frame(width: 26, height: 26)
-//                                .foregroundColor(Color("subTextClr"))
-//                                .background(Color("buttonShapeColor"))
-//                                .clipShape(Circle())
-//                        }
-//                        
-//                        Text("\(quantity)")
-//                            .font(Font.custom("Switzer-Regular", size: 14))
-//                            .foregroundStyle(Color.textClr)
-//                        
-//                        Button {
-//                            quantity += 1
-//                        } label: {
-//                            Image(systemName: "plus")
-//                                .scaledToFit()
-//                                .frame(width: 26, height: 26)
-//                                .foregroundColor(Color.white)
-//                                .background(Color("primaryColor"))
-//                                .clipShape(Circle())
-//                        }
-//                        
-//                    }
                     
                     Spacer()
                     
                     Text("Total: \(price)")
-                    
                 }
                 .frame(height: 26)
                 .padding(.bottom, 24)
@@ -65,7 +33,7 @@ struct BottomButtonView: View {
             }
             .padding(.horizontal, 24)
             .padding(.top, 24)
-            .padding(.bottom, 12)
+            .padding(.bottom, 20)
             .background(.white)
             .clipShape(RoundedCorner(radius: 24, corners: [.topLeft, .topRight]))
         }
@@ -74,4 +42,5 @@ struct BottomButtonView: View {
 
 #Preview {
     BottomButtonView()
+        .previewLayout(.sizeThatFits)
 }

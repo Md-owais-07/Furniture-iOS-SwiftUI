@@ -9,7 +9,7 @@ import SwiftUI
 
 struct AppState: View {
     @EnvironmentObject var sessionManager: UserSessionManager
-
+    
     var body: some View {
         Group {
             if !sessionManager.hasSeenOnboarding {
