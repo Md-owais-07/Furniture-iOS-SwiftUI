@@ -30,7 +30,7 @@ struct ProductDetailView: View {
                         TopCircularButtonView(action: {
                             //
                         }, imageName: "fav")
-                    }.padding(.vertical, 8)
+                    }.padding(.horizontal, 24).padding(.top, 8)
                 }
                 
                 ScrollView {
@@ -123,14 +123,16 @@ struct ProductDetailView: View {
                             }
                         }
                     }
+                    .padding(.horizontal, 24)
                 }
-                .scrollBounceBehavior(.automatic)
-                .frame(maxWidth: .infinity, maxHeight: .infinity)
-            }
-            .padding(.horizontal, 24)
-            
-            ZStack {
-                BottomButtonView(price: product.productPrice.formatted(.currency(code: "USD")))
+                
+//                ZStack {
+//                    
+//                }
+                
+                VStack {
+                    BottomButtonView(price: product.productPrice.formatted(.currency(code: "USD")))
+                }.frame(maxWidth: .infinity, maxHeight: 120)
             }
         }
         .navigationBarBackButtonHidden(true)
