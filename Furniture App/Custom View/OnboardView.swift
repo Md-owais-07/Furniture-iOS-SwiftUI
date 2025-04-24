@@ -21,6 +21,7 @@ struct OnboardView: View {
                 .padding(.top, -120)
             
             Text(title)
+                .frame(height: 96)
                 .padding(.top, -65)
                 .foregroundStyle(Color("textClr"))
                 .font(.system(size: 24, weight: .medium, design: .default))

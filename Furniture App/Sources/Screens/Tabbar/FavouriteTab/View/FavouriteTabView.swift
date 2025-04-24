@@ -39,9 +39,19 @@ struct FavouriteTabView: View {
                 }
                 .padding(.horizontal, 24)
                 
+                
+                ZStack {
+                    VStack(spacing: -10) {
+                        LottieView(animationName: "fav", play: true, loopMode: .loop)
+                            .frame(width: 180, height: 180)
+                        
+                        Text("Your cart is empty")
+                            .font(Font.custom("Switzer-Regular", size: 16))
+                            .foregroundStyle(Color.subTextClr)
+                    }
+                }
             }
         }
-        
     }
 }
 

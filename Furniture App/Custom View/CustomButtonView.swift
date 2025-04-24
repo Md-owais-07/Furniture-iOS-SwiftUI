@@ -18,7 +18,6 @@ struct CustomButtonView: View {
     var body: some View {
         Button(action: action) {
             HStack(spacing: 10) {
-                
                 if isImageVisible {
                     Image(imageName)
                         .resizable()
@@ -32,15 +31,12 @@ struct CustomButtonView: View {
                         .font(.system(size: 16, weight: .semibold, design: .default))
                         .foregroundStyle(textColor)
                 }
-                
             }
             .frame(maxWidth: .infinity)
             .frame(height: 56)
             .background(Color(bgColor))
             .cornerRadius(14)
-            
         }
-        
     }
 }
 

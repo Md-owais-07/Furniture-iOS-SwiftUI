@@ -13,31 +13,17 @@ struct LoginView: View {
     @State private var passwordField: String = "abcd12"
     @State private var isNavigating = false
     @State private var isLoading: Bool = false
-    @AppStorage("isLoggedIn") private var isLoggedIn = false
     @StateObject private var viewModel = LoginViewModel()
     @State private var toast: Toast? = nil
+    
+    @EnvironmentObject var sessionManager: UserSessionManager
     
     var body: some View {
         NavigationStack() {
             ZStack {
                 Color("AppColor").ignoresSafeArea(.all)
                 
-                if isLoading {
-                    LottieView(animationName: "App-animation", play: true, loopMode: .loop)
-                        .frame(width: 200, height: 200)
-                }
-                
                 VStack {
-                    
-//                    HStack {
-//                        TopCircularButtonView(action: {
-//                            //
-//                        }, imageName: "backBtn")
-//                        Spacer()
-//                    }
-//                    .padding(.top, 10)
-//                    .padding(.bottom, 32)
-                    
                     VStack(alignment: .leading, spacing: 8) {
                         Text("Welcome Back")
                             .font(.system(size: 32, weight: .semibold, design: .serif))
@@ -86,33 +72,34 @@ struct LoginView: View {
                     .padding(.bottom, 24)
                     
                     VStack(spacing: 16) {
-                            CustomButtonView(action: {
-                                if emailField.isEmpty || passwordField.isEmpty {
-                                    print("Email and Password fields are required")
-                                    toast = Toast(style: .error, message: "Email and Password fields are required")
-                                } else if !emailField.contains("@") {
-                                    print("Enter valid email")
-                                    toast = Toast(style: .error, message: "Enter valid email address")
-                                } else if passwordField.count < 6 {
-                                    print("Password should be atleast 6 characters")
-                                    toast = Toast(style: .error, message: "Password should be atleast 6 characters")
-                                } else {
-                                    isLoading = true
-                                    DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
-                                        toast = Toast(style: .success, message: "Login Successful")
-                                        viewModel.loginWithFirebase(email: emailField, password: passwordField) { result in
-                                            if result {
-                                                isLoading = false
-                                                isLoggedIn = true
-                                                isNavigating = true
-                                            }
+                        CustomButtonView(action: {
+                            if emailField.isEmpty || passwordField.isEmpty {
+                                print("Email and Password fields are required")
+                                toast = Toast(style: .error, message: "Email and Password fields are required")
+                            } else if !emailField.contains("@") {
+                                print("Enter valid email")
+                                toast = Toast(style: .error, message: "Enter valid email address")
+                            } else if passwordField.count < 6 {
+                                print("Password should be atleast 6 characters")
+                                toast = Toast(style: .error, message: "Password should be atleast 6 characters")
+                            } else {
+                                isLoading = true
+                                DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+                                    toast = Toast(style: .success, message: "Login Successful")
+                                    viewModel.loginWithFirebase(email: emailField, password: passwordField) { result in
+                                        if result {
+                                            isLoading = false
+                                            isNavigating = true
+                                            sessionManager.isLoggedIn = true
+                                            sessionManager.userEmail = emailField
                                         }
                                     }
                                 }
-                            }, title: "Sign In")
-                            .navigationDestination(isPresented: $isNavigating) {
-                                CustomTabBarView()
                             }
+                        }, title: "Sign In")
+                        .navigationDestination(isPresented: $isNavigating) {
+                            CustomTabBarView()
+                        }
                         
                         Button {
                             //
@@ -144,7 +131,13 @@ struct LoginView: View {
                 .navigationBarBackButtonHidden(true)
                 .background(EnableSwipeBackGesture())
                 .padding(.horizontal, 24)
-            
+                
+                ZStack {
+                    if isLoading {
+                        LottieView(animationName: "App-animation", play: true, loopMode: .loop)
+                            .frame(width: 200, height: 200)
+                    }
+                }
             }
             .toastView(toast: $toast)
         }
