@@ -13,7 +13,6 @@ struct ContentView: View {
     let pageCount = 3
     @AppStorage("hasSeenOnboarding") private var hasSeenOnboarding = false
     
-    
     var body: some View {
         NavigationStack() {
             VStack {
@@ -33,7 +32,6 @@ struct ContentView: View {
                 HStack {
                     if currentPage < pageCount - 1 {
                         Button {
-                            
                             print("Skip pressed")
                         } label: {
                             Text("Skip")
@@ -52,8 +50,11 @@ struct ContentView: View {
                         }
                     } else {
                         CustomButtonView(action: {
-                            isNavigate = true
-                            hasSeenOnboarding = true
+                            withAnimation {
+                                isNavigate = true
+                                hasSeenOnboarding = true
+                            }
+                            
                         }, title: "Get Started")
                         .navigationDestination(isPresented: $isNavigate) {
                             LoginView()

@@ -28,7 +28,6 @@ struct ShoppingTabView: View {
                             }
                             
                             HStack {
-                                
                                 Spacer()
                                 
                                 TopCircularButtonView(action: {
@@ -96,10 +95,10 @@ struct ShoppingTabView: View {
                     .padding(.horizontal, 24)
                     
                     if cartManager.items.isEmpty {
-                        ZStack {
-                            Text("You cart is empty..")
-                        }
-                        .frame(maxWidth: .infinity, maxHeight: .infinity)
+//                        ZStack {
+//                            Text("You cart is empty..")
+//                        }
+//                        .frame(maxWidth: .infinity, maxHeight: .infinity)
                     } else {
                         VStack(spacing: 0) {
                             VStack(spacing: 0) {
@@ -165,7 +164,6 @@ struct ShoppingTabView: View {
                                 
                             }
                             .padding([.horizontal, .vertical], 24)
-//                            .frame(maxWidth: .infinity, alignment: .leading)
                             
                             Spacer()
                             
@@ -182,6 +180,19 @@ struct ShoppingTabView: View {
                 }
                 .navigationDestination(isPresented: $navigateToNext) {
                     CheckoutView()
+                }
+                
+                ZStack {
+                    VStack(spacing: -10) {
+                        if cartManager.items.isEmpty {
+                            LottieView(animationName: "cart2", play: true, loopMode: .loop)
+                                .frame(width: 180, height: 180)
+                            
+                            Text("Your cart is empty")
+                                .font(Font.custom("Switzer-Regular", size: 16))
+                                .foregroundStyle(Color.subTextClr)
+                        }
+                    }
                 }
             }
         }

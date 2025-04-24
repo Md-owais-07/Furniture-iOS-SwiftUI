@@ -17,9 +17,24 @@ struct ProfileTabView: View {
     @EnvironmentObject var sessionManager: UserSessionManager
     @EnvironmentObject var navigationManager: NavigationManager
     
+    @State private var navigateToNext: Bool = false
+    @State private var selectedDestination: Destination?
+
+    
+    enum Destination: Hashable {
+        case profile
+        case payment
+        case order
+        case delivery
+        case support
+        case legacy
+    }
+    
     var menuItems: [MenuItem] {
         [
-            MenuItem(title: "Profile", imageName: "profile") { print("Profile tapped") },
+            MenuItem(title: "Profile", imageName: "profile") {
+                selectedDestination = .profile
+            },
             MenuItem(title: "Payment Methods", imageName: "payment") { print("Payment Methods tapped") },
             MenuItem(title: "Order History", imageName: "order") { print("Order History tapped") },
             MenuItem(title: "Delivery History", imageName: "delivery") { print("Delivery History tapped") },
@@ -68,7 +83,7 @@ struct ProfileTabView: View {
                                 MenuButtonView(item: item)
                             }
                             
-                            // Logout Button
+//                             Logout Button
 //                            Button {
 //                                viewModel.logout(navigationManager: navigationManager)
 //                                print("Log out pressed....")
@@ -92,7 +107,7 @@ struct ProfileTabView: View {
                                     
                                     Text("Log Out")
                                         .font(Font.custom("Switzer-Medium", size: 16))
-                                        .foregroundStyle(Color.textClr)
+                                        .foregroundStyle(Color.red)
                                 }
                                 .frame(maxWidth: .infinity, maxHeight: 56, alignment: .leading)
                                 .background(Color.white)
@@ -107,7 +122,7 @@ struct ProfileTabView: View {
 //                        VStack(spacing: 16) {
 //                            
 //                            Button {
-//                                //
+//                                navigateToNext = true
 //                            } label: {
 //                                HStack(spacing: 12) {
 //                                    Image("profile")
@@ -237,6 +252,27 @@ struct ProfileTabView: View {
 //                        }
                     }
                 }
+                .navigationDestination(for: Destination.self, destination: { destination in
+                    switch destination {
+                    case .profile:
+                        PfView()
+                        
+                    case .payment:
+                        PfView()
+                        
+                    case .order:
+                        PfView()
+                        
+                    case .delivery:
+                        OdView()
+                        
+                    case .support:
+                        PfView()
+                    case .legacy:
+                        DdView()
+                    }
+                })
+                
                 .padding(.horizontal, 24)
             }
         }

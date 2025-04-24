@@ -13,14 +13,16 @@ struct RegisterView: View {
     @State private var passwordField: String = ""
     @StateObject private var viewModel = RegisterViewModel()
     @Environment(\.dismiss) private var dismiss
-    
     @EnvironmentObject var sessionManager: UserSessionManager
+    
+    @State private var toast: Toast? = nil
+    @State private var isLoading: Bool = false
     
     var body: some View {
         ZStack {
             Color("AppColor").ignoresSafeArea(.all)
+            
             VStack {
-                
                 HStack {
                     TopCircularButtonView(action: {
                         dismiss()
@@ -52,17 +54,28 @@ struct RegisterView: View {
                 
                 VStack(spacing: 16) {
                     CustomButtonView(action: {
-                        if emailField.count == 0 || passwordField.count == 0 || fullNameField.count == 0 {
+                        if emailField.isEmpty || passwordField.isEmpty || fullNameField.isEmpty {
                             print("All fields are required")
+                            toast = Toast(style: .error, message: "All fields are required")
                         } else if !emailField.contains("@") {
                             print("Enter valid email")
+                            toast = Toast(style: .error, message: "Enter valid email")
                         } else if passwordField.count < 6 {
                             print("Password should be atleast 6 characters")
+                            toast = Toast(style: .error, message: "Password should be atleast 6 characters")
                         } else {
-                            viewModel.createUser(email: emailField, password: passwordField)
-                            sessionManager.isLoggedIn = true
-                            sessionManager.userName = fullNameField
-                            sessionManager.userEmail = emailField
+                            isLoading = true
+                            DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+                                toast = Toast(style: .success, message: "Register Successful")
+                            }
+                            DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+//                                toast = Toast(style: .success, message: "Register Successful")
+                                viewModel.createUser(email: emailField, password: passwordField)
+                                sessionManager.isLoggedIn = true
+                                sessionManager.userName = fullNameField
+                                sessionManager.userEmail = emailField
+                                isLoading = false
+                            }
                         }
                         
                     }, title: "Sign Up")
@@ -88,9 +101,17 @@ struct RegisterView: View {
                 }
                 Spacer()
             }
+            .toastView(toast: $toast)
             .navigationBarBackButtonHidden(true)
             .background(EnableSwipeBackGesture())
             .padding(.horizontal, 24)
+            
+            ZStack {
+                if isLoading {
+                    LottieView(animationName: "App-animation", play: true, loopMode: .loop)
+                        .frame(width: 200, height: 200)
+                }
+            }
         }
     }
 }
