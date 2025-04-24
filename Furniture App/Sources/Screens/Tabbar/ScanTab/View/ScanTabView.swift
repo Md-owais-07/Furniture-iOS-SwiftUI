@@ -9,12 +9,10 @@ import SwiftUI
 
 struct ScanTabView: View {
     var body: some View {
-        NavigationStack {
-            ZStack {
-                Color("AppColor").ignoresSafeArea(.all)
-                VStack {
-                    Text("Coming soon...")
-                }
+        ZStack {
+            Color("AppColor").ignoresSafeArea(.all)
+            VStack {
+                Text("Coming soon...")
             }
         }
     }

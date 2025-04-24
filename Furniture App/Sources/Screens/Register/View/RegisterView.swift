@@ -13,10 +13,13 @@ struct RegisterView: View {
     @State private var passwordField: String = ""
     @StateObject private var viewModel = RegisterViewModel()
     @Environment(\.dismiss) private var dismiss
+    
     @EnvironmentObject var sessionManager: UserSessionManager
+    @EnvironmentObject var navManager: AppNavigationManager
     
     @State private var toast: Toast? = nil
     @State private var isLoading: Bool = false
+    @State private var isNavigating: Bool = false
     
     var body: some View {
         ZStack {
@@ -69,9 +72,9 @@ struct RegisterView: View {
                                 toast = Toast(style: .success, message: "Register Successful")
                             }
                             DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
-//                                toast = Toast(style: .success, message: "Register Successful")
                                 viewModel.createUser(email: emailField, password: passwordField)
                                 sessionManager.isLoggedIn = true
+                                isNavigating = true
                                 sessionManager.userName = fullNameField
                                 sessionManager.userEmail = emailField
                                 isLoading = false
@@ -79,6 +82,9 @@ struct RegisterView: View {
                         }
                         
                     }, title: "Sign Up")
+                    .navigationDestination(isPresented: $isNavigating) {
+                        CustomTabBarView()
+                    }
                     
                     CustomButtonView(action: {
                         //

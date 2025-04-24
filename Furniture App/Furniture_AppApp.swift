@@ -22,10 +22,12 @@ struct Furniture_AppApp: App {
     @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
     @StateObject var sessionManager = UserSessionManager()
     @StateObject var cartManager = CartManager()
+    @StateObject var navManager = AppNavigationManager()
     
     var body: some Scene {
         WindowGroup {
             AppState()
+                .environmentObject(navManager)
                 .environmentObject(sessionManager)
                 .environmentObject(cartManager)
         }

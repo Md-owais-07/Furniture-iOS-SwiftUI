@@ -79,6 +79,6 @@ class NavigationManager: ObservableObject {
 }
 
 
-enum AppRoute: Hashable {
+enum AppRoute1: Hashable {
     case tabbar
 }

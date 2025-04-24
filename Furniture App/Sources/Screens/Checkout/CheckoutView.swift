@@ -9,6 +9,7 @@ import SwiftUI
 
 struct CheckoutView: View {
     @State private var navigateToNext = false
+    @EnvironmentObject var navManager: AppNavigationManager
     
     var body: some View {
         ZStack {
@@ -35,8 +36,6 @@ struct CheckoutView: View {
                 .padding(.top, 8)
                 .frame(height: 48)
                 
-//                Spacer()
-                
                 ScrollView {
                     VStack {
                         VStack {
@@ -62,7 +61,7 @@ struct CheckoutView: View {
                                     print("hello 2...")
                                 }, image: "uncheck", title: "Office Address", phoneNumber: "+91 9565785432", address: "Hsr layout, bangalore")
                             }
-
+                            
                         }
                         
                     }
@@ -106,9 +105,9 @@ struct CheckoutView: View {
                 .scrollIndicators(.hidden)
                 .scrollBounceBehavior(.basedOnSize)
                 
-//                ZStack {
-//                    
-//                }.frame(maxWidth: .infinity, maxHeight: 16)
+                //                ZStack {
+                //
+                //                }.frame(maxWidth: .infinity, maxHeight: 16)
                 
                 VStack(spacing: 0) {
                     VStack(spacing: 0) {

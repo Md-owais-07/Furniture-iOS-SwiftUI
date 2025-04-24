@@ -17,130 +17,129 @@ struct LoginView: View {
     @State private var toast: Toast? = nil
     
     @EnvironmentObject var sessionManager: UserSessionManager
+    @EnvironmentObject var navManager: AppNavigationManager
     
     var body: some View {
-        NavigationStack() {
-            ZStack {
-                Color("AppColor").ignoresSafeArea(.all)
+        ZStack {
+            Color("AppColor").ignoresSafeArea(.all)
+            
+            VStack {
+                VStack(alignment: .leading, spacing: 8) {
+                    Text("Welcome Back")
+                        .font(.system(size: 32, weight: .semibold, design: .serif))
+                        .foregroundStyle(.textClr)
+                    
+                    Text("Welcome Back! Please Enter Your Details.")
+                        .font(.system(size: 16, weight: .regular, design: .serif))
+                        .foregroundStyle(Color("subTextClr"))
+                    
+                }
+                .frame(maxWidth: .infinity, alignment: .leading)
+                .padding(.bottom, 32)
+                .padding(.top, 98)
                 
-                VStack {
-                    VStack(alignment: .leading, spacing: 8) {
-                        Text("Welcome Back")
-                            .font(.system(size: 32, weight: .semibold, design: .serif))
-                            .foregroundStyle(.textClr)
-                        
-                        Text("Welcome Back! Please Enter Your Details.")
-                            .font(.system(size: 16, weight: .regular, design: .serif))
-                            .foregroundStyle(Color("subTextClr"))
-                        
+                VStack(spacing: 16) {
+                    CustomTextFieldView(title: "Email", placeholder: "Enter Your Email", text: $emailField)
+                    CustomTextFieldView(title: "Password", placeholder: "••••••••", text: $passwordField, isSecure: true)
+                }
+                .padding(.bottom, 16)
+                
+                
+                HStack(spacing: 8) {
+                    Button {
+                        //
+                    } label: {
+                        Image("rect")
+                            .resizable()
+                            .frame(width: 16, height: 16)
                     }
-                    .frame(maxWidth: .infinity, alignment: .leading)
-                    .padding(.bottom, 32)
-                    .padding(.top, 98)
                     
-                    VStack(spacing: 16) {
-                        CustomTextFieldView(title: "Email", placeholder: "Enter Your Email", text: $emailField)
-                        CustomTextFieldView(title: "Password", placeholder: "••••••••", text: $passwordField, isSecure: true)
-                    }
-                    .padding(.bottom, 16)
+                    Text("Remember For 30 Days")
+                        .font(.system(size: 14, weight: .regular, design: .default))
+                        .foregroundStyle(Color("subTextClr"))
                     
+                    Spacer()
                     
-                    HStack(spacing: 8) {
-                        Button {
-                            //
-                        } label: {
-                            Image("rect")
-                                .resizable()
-                                .frame(width: 16, height: 16)
-                        }
-                        
-                        Text("Remember For 30 Days")
+                    Button {
+                        //
+                    } label: {
+                        Text("Forgot Password")
                             .font(.system(size: 14, weight: .regular, design: .default))
-                            .foregroundStyle(Color("subTextClr"))
-                        
-                        Spacer()
-                        
-                        Button {
-                            //
-                        } label: {
-                            Text("Forgot Password")
-                                .font(.system(size: 14, weight: .regular, design: .default))
-                                .foregroundStyle(.textClr)
-                        }
-                        
+                            .foregroundStyle(.textClr)
                     }
-                    .padding(.bottom, 24)
                     
-                    VStack(spacing: 16) {
-                        CustomButtonView(action: {
-                            if emailField.isEmpty || passwordField.isEmpty {
-                                print("Email and Password fields are required")
-                                toast = Toast(style: .error, message: "Email and Password fields are required")
-                            } else if !emailField.contains("@") {
-                                print("Enter valid email")
-                                toast = Toast(style: .error, message: "Enter valid email address")
-                            } else if passwordField.count < 6 {
-                                print("Password should be atleast 6 characters")
-                                toast = Toast(style: .error, message: "Password should be atleast 6 characters")
-                            } else {
-                                isLoading = true
-                                DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
-                                    toast = Toast(style: .success, message: "Login Successful")
-                                    viewModel.loginWithFirebase(email: emailField, password: passwordField) { result in
-                                        if result {
-                                            isLoading = false
-                                            isNavigating = true
-                                            sessionManager.isLoggedIn = true
-                                            sessionManager.userEmail = emailField
-                                        }
+                }
+                .padding(.bottom, 24)
+                
+                VStack(spacing: 16) {
+                    CustomButtonView(action: {
+                        if emailField.isEmpty || passwordField.isEmpty {
+                            print("Email and Password fields are required")
+                            toast = Toast(style: .error, message: "Email and Password fields are required")
+                        } else if !emailField.contains("@") {
+                            print("Enter valid email")
+                            toast = Toast(style: .error, message: "Enter valid email address")
+                        } else if passwordField.count < 6 {
+                            print("Password should be atleast 6 characters")
+                            toast = Toast(style: .error, message: "Password should be atleast 6 characters")
+                        } else {
+                            isLoading = true
+                            DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+                                toast = Toast(style: .success, message: "Login Successful")
+                                viewModel.loginWithFirebase(email: emailField, password: passwordField) { result in
+                                    if result {
+                                        isLoading = false
+                                        isNavigating = true
+                                        sessionManager.isLoggedIn = true
+                                        sessionManager.userEmail = emailField
                                     }
                                 }
                             }
-                        }, title: "Sign In")
-                        .navigationDestination(isPresented: $isNavigating) {
-                            CustomTabBarView()
                         }
-                        
-                        Button {
-                            //
-                        } label: {
-                            CustomButtonView(action: {
-                                //
-                            }, title: "Sign In With Google", isImageVisible: true, imageName: "Google", bgColor: .white, textColor: .textClr)
-                        }
+                    }, title: "Log In")
+                    .navigationDestination(isPresented: $isNavigating) {
+                        CustomTabBarView()
                     }
-                    .padding(.bottom, 24)
                     
-                    HStack {
-                        Text("Don't Have An Account?")
-                            .font(.system(size: 14, weight: .regular, design: .default))
-                            .foregroundStyle(Color("subTextClr"))
-                        
-                        Button {
+                    Button {
+                        //
+                    } label: {
+                        CustomButtonView(action: {
                             //
-                        } label: {
-                            NavigationLink(destination: RegisterView()) {
-                                Text("Sign Up For Free")
-                                    .font(.system(size: 14, weight: .medium, design: .default))
-                                    .foregroundStyle(Color("textClr"))
-                            }
+                        }, title: "Sign In With Google", isImageVisible: true, imageName: "Google", bgColor: .white, textColor: .textClr)
+                    }
+                }
+                .padding(.bottom, 24)
+                
+                HStack {
+                    Text("Don't Have An Account?")
+                        .font(.system(size: 14, weight: .regular, design: .default))
+                        .foregroundStyle(Color("subTextClr"))
+                    
+                    Button {
+                        //
+                    } label: {
+                        NavigationLink(destination: RegisterView()) {
+                            Text("Sign Up For Free")
+                                .font(.system(size: 14, weight: .medium, design: .default))
+                                .foregroundStyle(Color("textClr"))
                         }
                     }
-                    Spacer()
                 }
-                .navigationBarBackButtonHidden(true)
-                .background(EnableSwipeBackGesture())
-                .padding(.horizontal, 24)
-                
-                ZStack {
-                    if isLoading {
-                        LottieView(animationName: "App-animation", play: true, loopMode: .loop)
-                            .frame(width: 200, height: 200)
-                    }
+                Spacer()
+            }
+            .navigationBarBackButtonHidden(true)
+            .background(EnableSwipeBackGesture())
+            .padding(.horizontal, 24)
+            
+            ZStack {
+                if isLoading {
+                    LottieView(animationName: "App-animation", play: true, loopMode: .loop)
+                        .frame(width: 200, height: 200)
                 }
             }
-            .toastView(toast: $toast)
         }
+        .toastView(toast: $toast)
     }
 }
 
