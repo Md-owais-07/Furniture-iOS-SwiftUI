@@ -12,7 +12,6 @@ struct RegisterView: View {
     @State private var emailField: String = ""
     @State private var passwordField: String = ""
     @StateObject private var viewModel = RegisterViewModel()
-    @Environment(\.dismiss) private var dismiss
     
     @EnvironmentObject var sessionManager: UserSessionManager
     @EnvironmentObject var navManager: AppNavigationManager
@@ -28,7 +27,7 @@ struct RegisterView: View {
             VStack {
                 HStack {
                     TopCircularButtonView(action: {
-                        dismiss()
+                        navManager.pop()
                     }, imageName: "backBtn")
                     Spacer()
                 }
@@ -98,7 +97,7 @@ struct RegisterView: View {
                         .font(.system(size: 14, weight: .regular, design: .default))
                         .foregroundStyle(Color.subTextClr)
                     Button {
-                        dismiss()
+                        navManager.pop()
                     } label: {
                         Text("Sign In")
                             .font(.system(size: 14, weight: .medium, design: .default))
@@ -107,7 +106,6 @@ struct RegisterView: View {
                 }
                 Spacer()
             }
-            .toastView(toast: $toast)
             .navigationBarBackButtonHidden(true)
             .background(EnableSwipeBackGesture())
             .padding(.horizontal, 24)
@@ -119,6 +117,7 @@ struct RegisterView: View {
                 }
             }
         }
+        .toastView(toast: $toast)
     }
 }
 

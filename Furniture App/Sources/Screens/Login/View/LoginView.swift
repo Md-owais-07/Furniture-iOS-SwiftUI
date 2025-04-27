@@ -23,7 +23,7 @@ struct LoginView: View {
         ZStack {
             Color("AppColor").ignoresSafeArea(.all)
             
-            VStack {
+            VStack(spacing: 0) {
                 VStack(alignment: .leading, spacing: 8) {
                     Text("Welcome Back")
                         .font(.system(size: 32, weight: .semibold, design: .serif))
@@ -117,16 +117,16 @@ struct LoginView: View {
                         .foregroundStyle(Color("subTextClr"))
                     
                     Button {
-                        //
+                        navManager.push(.auth(.signUp))
                     } label: {
-                        NavigationLink(destination: RegisterView()) {
-                            Text("Sign Up For Free")
-                                .font(.system(size: 14, weight: .medium, design: .default))
-                                .foregroundStyle(Color("textClr"))
-                        }
+                        Text("Sign Up For Free")
+                            .font(.system(size: 14, weight: .medium, design: .default))
+                            .foregroundStyle(Color("textClr"))
                     }
                 }
+                
                 Spacer()
+                
             }
             .navigationBarBackButtonHidden(true)
             .background(EnableSwipeBackGesture())

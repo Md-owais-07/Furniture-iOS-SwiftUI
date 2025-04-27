@@ -17,7 +17,6 @@ struct BottomButtonView: View {
             Spacer()
             VStack(spacing: 0) {
                 HStack(spacing: 10) {
-                    
                     ProductQuantityButton(quantity: $quantity)
                     
                     Spacer()
@@ -33,7 +32,7 @@ struct BottomButtonView: View {
             }
             .padding(.horizontal, 24)
             .padding(.top, 24)
-            .padding(.bottom, 20)
+            .padding(.bottom, 85)
             .background(.white)
             .clipShape(RoundedCorner(radius: 24, corners: [.topLeft, .topRight]))
         }
@@ -42,5 +41,4 @@ struct BottomButtonView: View {
 
 #Preview {
     BottomButtonView()
-        .previewLayout(.sizeThatFits)
 }

@@ -16,26 +16,29 @@ struct CustomButtonView: View {
     var textColor: Color = .white
     
     var body: some View {
-        Button(action: action) {
-            HStack(spacing: 10) {
-                if isImageVisible {
-                    Image(imageName)
-                        .resizable()
-                        .frame(width: 24, height: 24)
-                    
-                    Text(title)
-                        .font(.system(size: 16, weight: .semibold, design: .default))
-                        .foregroundStyle(textColor)
-                } else {
-                    Text(title)
-                        .font(.system(size: 16, weight: .semibold, design: .default))
-                        .foregroundStyle(textColor)
+        VStack(spacing: 0) {
+//            Spacer()
+            Button(action: action) {
+                HStack(spacing: 10) {
+                    if isImageVisible {
+                        Image(imageName)
+                            .resizable()
+                            .frame(width: 24, height: 24)
+                        
+                        Text(title)
+                            .font(.system(size: 16, weight: .semibold, design: .default))
+                            .foregroundStyle(textColor)
+                    } else {
+                        Text(title)
+                            .font(.system(size: 16, weight: .semibold, design: .default))
+                            .foregroundStyle(textColor)
+                    }
                 }
+                .frame(maxWidth: .infinity)
+                .frame(height: 56)
+                .background(Color(bgColor))
+                .cornerRadius(14)
             }
-            .frame(maxWidth: .infinity)
-            .frame(height: 56)
-            .background(Color(bgColor))
-            .cornerRadius(14)
         }
     }
 }

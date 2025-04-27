@@ -9,16 +9,17 @@ import SwiftUI
 
 struct PaymentView: View {
     @State private var promoCode: String = ""
+    @Environment(\.dismiss) var dismiss
     
     var body: some View {
         ZStack {
             Color("AppColor").ignoresSafeArea(.all)
             // Top Header View
-            VStack {
+            VStack(spacing: 0) {
                 ZStack {
                     HStack {
                         TopCircularButtonView(action: {
-                            
+                            dismiss()
                         }, imageName: "backBtn")
                         
                         Spacer()
@@ -31,10 +32,6 @@ struct PaymentView: View {
                     }
                 }
                 .padding(.horizontal, 24)
-                .padding(.top, 8)
-                .frame(height: 48)
-                
-                Spacer()
                 
                 ScrollView {
                     VStack {
@@ -103,34 +100,6 @@ struct PaymentView: View {
                             }
                             .padding(.horizontal, 24)
                         }
-                        
-//                        VStack(alignment: .leading, spacing: 20) {
-//                            
-//                            Text("Choose Payment Method")
-//                                .font(Font.custom("Switzer-Medium", size: 20))
-//                                .foregroundStyle(Color.textClr)
-//                            
-//                            HStack(spacing: 12) {
-//                                ForEach(["p1", "p2", "p3", "all"], id: \.self) { imageName in
-//                                    Button(action: {
-//                                        // Handle tap
-//                                    }) {
-//                                        ZStack {
-//                                            Image(imageName)
-//                                                .resizable()
-//                                                .scaledToFit()
-//                                                .frame(width: 20, height: 20)
-//                                                .background(Color.white)
-//                                                .cornerRadius(12)
-//                                                .shadow(color: Color.black.opacity(0.05), radius: 2, x: 0, y: 1)
-//                                        }.frame(maxWidth: .infinity, minHeight: 46).background(Color.white).cornerRadius(12)
-//                                    }
-//                                }
-//                            }
-//                        }
-//                        .padding(.top, 24)
-//                        .frame(maxWidth: .infinity, alignment: .leading)
-
                         
                         VStack(alignment: .leading, spacing: 20) {
                             Text("Choose Payment Method")
@@ -208,38 +177,37 @@ struct PaymentView: View {
                     }
                     .padding(.horizontal, 24)
                     .padding(.top, 24)
+                    
                 }
                 
-                ZStack {
-                    VStack(spacing: 0) {
-                        HStack(spacing: 10) {
-                            Text("Total Payment")
-                                .font(Font.custom("Switzer-Medium", size: 20))
-                                .foregroundStyle(Color.textClr)
-                            
-                            Spacer()
-                            
-                            Text("$58.80")
-                                .font(Font.custom("Switzer-Medium", size: 20))
-                                .foregroundStyle(Color.primaryButton)
-                        }
-                        .frame(height: 26)
-                        .padding(.bottom, 24)
+                VStack(spacing: 0) {
+                    HStack {
+                        Text("Total Payment")
+                            .font(Font.custom("Switzer-Medium", size: 20))
+                            .foregroundStyle(Color.textClr)
                         
-                        CustomButtonView(action: {
-                            //
-                        }, title: "Payment", bgColor: Color("primaryColor"), textColor: .white)
+                        Spacer()
+                        
+                        Text("$58.80")
+                            .font(Font.custom("Switzer-Medium", size: 20))
+                            .foregroundStyle(Color.primaryButton)
                     }
-                    .padding(.horizontal, 24)
-                    .padding(.top, 24)
-                    .padding(.bottom, 12)
-                    .background(.white)
-                    .clipShape(RoundedCorner(radius: 24, corners: [.topLeft, .topRight]))
+                    .frame(height: 28)
+                    .padding(.vertical, 24)
+                    
+                    CustomButtonView(action: {
+                        //
+                    }, title: "Payment", bgColor: Color("primaryColor"), textColor: .white).padding(.bottom, 40)
                 }
+                .padding(.horizontal, 24)
+                .frame(height: 156)
+                .background(.white)
+                .clipShape(RoundedCorner(radius: 24, corners: [.topLeft, .topRight]))
             }
         }
         .navigationBarBackButtonHidden(true)
         .background(EnableSwipeBackGesture())
+        .ignoresSafeArea(.all, edges: .bottom)
     }
 }
 

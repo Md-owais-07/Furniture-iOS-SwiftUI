@@ -13,10 +13,8 @@ struct ProfileTabView: View {
     @State private var isPresented: Bool = false
     @State private var path = NavigationPath()
     
-    @Environment(\.dismiss) private var dismiss
     @EnvironmentObject var sessionManager: UserSessionManager
     @EnvironmentObject var navigationManager: NavigationManager
-    
     @EnvironmentObject var navManager: AppNavigationManager
     
     @State private var navigateToNext: Bool = false
@@ -89,138 +87,6 @@ struct ProfileTabView: View {
                             .cornerRadius(14)
                         }
                     }
-                    
-                    //                        VStack(spacing: 16) {
-                    //
-                    //                            Button {
-                    //                                navigateToNext = true
-                    //                            } label: {
-                    //                                HStack(spacing: 12) {
-                    //                                    Image("profile")
-                    //                                        .resizable()
-                    //                                        .frame(width: 24, height: 24)
-                    //                                        .padding(.vertical, 16)
-                    //                                        .padding(.leading, 16)
-                    //
-                    //                                    Text("Profile")
-                    //                                        .font(Font.custom("Switzer-Medium", size: 16))
-                    //                                        .foregroundStyle(Color.textClr)
-                    //                                }
-                    //                                .frame(maxWidth: .infinity, maxHeight: 56, alignment: .leading)
-                    //                                .background(Color.white)
-                    //                                .cornerRadius(14)
-                    //                            }
-                    //
-                    //
-                    //                            Button {
-                    //
-                    //                            } label: {
-                    //                                HStack(spacing: 12) {
-                    //                                    Image("payment")
-                    //                                        .resizable()
-                    //                                        .frame(width: 24, height: 24)
-                    //                                        .padding(.vertical, 16)
-                    //                                        .padding(.leading, 16)
-                    //
-                    //                                    Text("Payment Methods")
-                    //                                        .font(Font.custom("Switzer-Medium", size: 16))
-                    //                                        .foregroundStyle(Color.textClr)
-                    //                                }
-                    //                                .frame(maxWidth: .infinity, maxHeight: 56, alignment: .leading)
-                    //                                .background(Color.white)
-                    //                                .cornerRadius(14)
-                    //                            }
-                    //
-                    //
-                    //                            Button {
-                    //
-                    //                            } label: {
-                    //                                HStack(spacing: 12) {
-                    //                                    Image("order")
-                    //                                        .resizable()
-                    //                                        .frame(width: 24, height: 24)
-                    //                                        .padding(.vertical, 16)
-                    //                                        .padding(.leading, 16)
-                    //
-                    //                                    Text("Order History")
-                    //                                        .font(Font.custom("Switzer-Medium", size: 16))
-                    //                                        .foregroundStyle(Color.textClr)
-                    //                                }
-                    //                                .frame(maxWidth: .infinity, maxHeight: 56, alignment: .leading)
-                    //                                .background(Color.white)
-                    //                                .cornerRadius(14)
-                    //                            }
-                    //
-                    //
-                    //                            Button {
-                    //
-                    //                            } label: {
-                    //                                HStack(spacing: 12) {
-                    //                                    Image("delivery")
-                    //                                        .resizable()
-                    //                                        .frame(width: 24, height: 24)
-                    //                                        .padding(.vertical, 16)
-                    //                                        .padding(.leading, 16)
-                    //
-                    //                                    Text("Delivery History")
-                    //                                        .font(Font.custom("Switzer-Medium", size: 16))
-                    //                                        .foregroundStyle(Color.textClr)
-                    //                                }
-                    //                                .frame(maxWidth: .infinity, maxHeight: 56, alignment: .leading)
-                    //                                .background(Color.white)
-                    //                                .cornerRadius(14)
-                    //                            }
-                    //
-                    //
-                    //                            Button {
-                    //
-                    //                            } label: {
-                    //                                HStack(spacing: 12) {
-                    //                                    Image("support")
-                    //                                        .resizable()
-                    //                                        .frame(width: 24, height: 24)
-                    //                                        .padding(.vertical, 16)
-                    //                                        .padding(.leading, 16)
-                    //
-                    //                                    Text("Support Center")
-                    //                                        .font(Font.custom("Switzer-Medium", size: 16))
-                    //                                        .foregroundStyle(Color.textClr)
-                    //                                }
-                    //                                .frame(maxWidth: .infinity, maxHeight: 56, alignment: .leading)
-                    //                                .background(Color.white)
-                    //                                .cornerRadius(14)
-                    //                            }
-                    //
-                    //
-                    //                            Button {
-                    //
-                    //                            } label: {
-                    //                                HStack(spacing: 12) {
-                    //                                    Image("legal")
-                    //                                        .resizable()
-                    //                                        .frame(width: 24, height: 24)
-                    //                                        .padding(.vertical, 16)
-                    //                                        .padding(.leading, 16)
-                    //
-                    //                                    Text("Legal Policy")
-                    //                                        .font(Font.custom("Switzer-Medium", size: 16))
-                    //                                        .foregroundStyle(Color.textClr)
-                    //                                }
-                    //                                .frame(maxWidth: .infinity, maxHeight: 56, alignment: .leading)
-                    //                                .background(Color.white)
-                    //                                .cornerRadius(14)
-                    //                            }
-                    //
-                    //                            Button {
-                    //                                viewModel.logout(navigationManager: navigationManager)
-                    //                                print("Log out pressing....")
-                    //                            } label: {
-                    //                                Text("Log Out")
-                    //                                    .font(Font.custom("Switzer-Medium", size: 16))
-                    //                                    .foregroundStyle(Color.logout)
-                    //                            }
-                    //                            .padding(.top, 12)
-                    //                        }
                 }
             }
             .padding(.horizontal, 24)

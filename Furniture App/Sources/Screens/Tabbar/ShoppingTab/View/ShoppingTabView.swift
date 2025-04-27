@@ -12,11 +12,13 @@ struct ShoppingTabView: View {
     @State private var quantity: Int = 0
     @State private var navigateToNext = false
     
+    @Environment(\.dismiss) var dismiss
+    
     var body: some View {
         ZStack {
             Color("AppColor").ignoresSafeArea(.all)
             
-            VStack {
+            VStack(spacing: 0) {
                 VStack {
                     // Top Header View
                     ZStack {
@@ -34,8 +36,6 @@ struct ShoppingTabView: View {
                             }, imageName: "bin")
                         }
                     }
-                    .padding(.top, 8)
-                    .frame(height: 48)
                     
                     Spacer()
                     
@@ -94,10 +94,7 @@ struct ShoppingTabView: View {
                 .padding(.horizontal, 24)
                 
                 if cartManager.items.isEmpty {
-                    //                        ZStack {
-                    //                            Text("You cart is empty..")
-                    //                        }
-                    //                        .frame(maxWidth: .infinity, maxHeight: .infinity)
+                    //
                 } else {
                     VStack(spacing: 0) {
                         VStack(spacing: 0) {

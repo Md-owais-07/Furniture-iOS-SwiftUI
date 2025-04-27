@@ -9,16 +9,17 @@ import SwiftUI
 
 struct ProductDetailView: View {
     var product: Products
-    
     @State private var quantity: Int = 0
     @State private var price: Int = 0
-    @Environment(\.dismiss) private var dismiss
+    
+    @EnvironmentObject var navManager: AppNavigationManager
+    @Environment(\.dismiss) var dismiss
     
     var body: some View {
         ZStack {
             Color("AppColor").ignoresSafeArea(.all)
             
-            VStack {
+            VStack(spacing: 0) {
                 ZStack {
                     HStack(spacing: 0) {
                         TopCircularButtonView(action: {
@@ -30,7 +31,7 @@ struct ProductDetailView: View {
                         TopCircularButtonView(action: {
                             //
                         }, imageName: "fav")
-                    }.padding(.horizontal, 24).padding(.top, 8)
+                    }.padding(.horizontal, 24)
                 }
                 
                 ScrollView {
@@ -126,17 +127,14 @@ struct ProductDetailView: View {
                     .padding(.horizontal, 24)
                 }
                 
-//                ZStack {
-//                    
-//                }
-                
                 VStack {
                     BottomButtonView(price: product.productPrice.formatted(.currency(code: "USD")))
-                }.frame(maxWidth: .infinity, maxHeight: 120)
+                }.frame(maxWidth: .infinity, maxHeight: 120).background(.red)
             }
         }
         .navigationBarBackButtonHidden(true)
         .background(EnableSwipeBackGesture())
+        .ignoresSafeArea(.all, edges: .bottom)
     }
 }
 

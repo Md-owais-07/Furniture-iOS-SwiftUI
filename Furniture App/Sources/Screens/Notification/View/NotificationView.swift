@@ -8,9 +8,10 @@
 import SwiftUI
 
 struct NotificationView: View {
-    @Environment(\.dismiss) private var dismiss
     @State private var isNotificationEmpty: Bool = true
     @State private var showNoNotificationsText: Bool = false
+    
+    @EnvironmentObject var navManager: AppNavigationManager
     
     var body: some View {
         ZStack {
@@ -49,7 +50,7 @@ struct NotificationView: View {
                     
                     HStack {
                         TopCircularButtonView(action: {
-                            dismiss()
+                            navManager.pop()
                         }, imageName: "backBtn")
                         
                         Spacer()

@@ -8,14 +8,14 @@
 import SwiftUI
 
 struct DismissButtonModifier: ViewModifier {
-    @Environment(\.dismiss) private var dismiss
+    @EnvironmentObject var navManager: AppNavigationManager
     
     func body(content: Content) -> some View {
         content
             .toolbar {
                 ToolbarItem(placement: .topBarLeading) {
                     TopCircularButtonView(action: {
-                        dismiss()
+                        navManager.pop()
                     }, imageName: "backBtn")
                 }
             }

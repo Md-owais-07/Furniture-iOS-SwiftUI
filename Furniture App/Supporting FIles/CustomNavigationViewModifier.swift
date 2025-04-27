@@ -8,15 +8,15 @@
 import SwiftUI
 
 struct CustomNavigationViewModifier: ViewModifier {
-    @Environment(\.dismiss) private var dismiss // Enables swipe back
+    @EnvironmentObject var navManager: AppNavigationManager
 
     func body(content: Content) -> some View {
         content
-            .navigationBarBackButtonHidden(true) // Hide default back button
+            .navigationBarBackButtonHidden(true)
             .toolbar {
                 ToolbarItem(placement: .topBarLeading) {
                     TopCircularButtonView(action: {
-                        dismiss()
+                        navManager.pop()
                     }, imageName: "backBtn")
                 }
             }

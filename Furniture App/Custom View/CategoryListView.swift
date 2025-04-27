@@ -155,6 +155,8 @@ struct CategoryListView: View {
     var product: Products
     
     @EnvironmentObject var cartManager: CartManager
+    @EnvironmentObject var navManager: AppNavigationManager
+    
     @State private var isAddedToCart: Bool = false
     @State private var quantity: Int = 0
     @ObservedObject var manager = CartManager()
@@ -213,34 +215,6 @@ struct CategoryListView: View {
             }
             .frame(height: 24)
             .padding(.horizontal, 24)
-//            .padding(.bottom, 16)
-
-            // **Product Grid/List**
-//            ScrollView {
-//                LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())], spacing: 16) {
-//                    ForEach(filteredProducts) { product in
-//                        VStack {
-//                            Image(product.image)
-//                                .resizable()
-//                                .scaledToFit()
-//                                .frame(width: 100, height: 100)
-//
-//                            Text(product.name)
-//                                .font(.headline)
-//                                .foregroundColor(.primary)
-//
-//                            Text("$\(String(format: "%.2f", product.price))")
-//                                .font(.subheadline)
-//                                .foregroundColor(.gray)
-//                        }
-//                        .padding()
-//                        .background(Color.white)
-//                        .cornerRadius(12)
-//                        .shadow(radius: 2)
-//                    }
-//                }
-//                .padding(.horizontal)
-//            }
             
             ScrollView(.horizontal, showsIndicators: false) {
                 HStack(spacing: -8) {

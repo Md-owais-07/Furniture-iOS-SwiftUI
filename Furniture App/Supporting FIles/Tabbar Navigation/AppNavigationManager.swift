@@ -55,7 +55,8 @@ enum FavouriteTab: Hashable {
 }
 
 enum ShoppingTab: Hashable {
-    case cart
+    case checkout
+    case payment
 }
 
 enum ProfileTab: Hashable {
@@ -104,8 +105,10 @@ func favouriteTabDestination(_ route: FavouriteTab) -> some View {
 @ViewBuilder
 func shoppingTabDestination(_ route: ShoppingTab) -> some View {
     switch route {
-    case .cart:
-        ProfileView()
+    case .checkout:
+        CheckoutView()
+    case .payment:
+        PaymentView()
     }
 }
 

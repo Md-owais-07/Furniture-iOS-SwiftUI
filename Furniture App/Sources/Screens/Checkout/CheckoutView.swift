@@ -9,18 +9,18 @@ import SwiftUI
 
 struct CheckoutView: View {
     @State private var navigateToNext = false
-    @EnvironmentObject var navManager: AppNavigationManager
+    @Environment(\.dismiss) var dismiss
     
     var body: some View {
         ZStack {
             Color("AppColor").ignoresSafeArea(.all)
             
-            VStack {
+            VStack(spacing: 0) {
                 // Top Header View
                 ZStack {
                     HStack {
                         TopCircularButtonView(action: {
-                            
+                            dismiss()
                         }, imageName: "backBtn")
                         
                         Spacer()
@@ -33,8 +33,6 @@ struct CheckoutView: View {
                     }
                 }
                 .padding(.horizontal, 24)
-                .padding(.top, 8)
-                .frame(height: 48)
                 
                 ScrollView {
                     VStack {
@@ -44,6 +42,8 @@ struct CheckoutView: View {
                                 .foregroundStyle(Color.textClr)
                                 .frame(maxWidth: .infinity, maxHeight: 44, alignment: .topLeading)
                         }
+                        .padding(.top, 24)
+                        .padding(.bottom, 16)
                         
                         VStack(spacing: 16) {
                             Button {
@@ -66,7 +66,6 @@ struct CheckoutView: View {
                         
                     }
                     .padding(.horizontal, 24)
-                    .frame(height: 260)
                     
                     ZStack {
                         
@@ -101,13 +100,7 @@ struct CheckoutView: View {
                     .frame(height: 268)
                     .padding(.horizontal, 24)
                 }
-                .padding(.top, 24)
                 .scrollIndicators(.hidden)
-                .scrollBounceBehavior(.basedOnSize)
-                
-                //                ZStack {
-                //
-                //                }.frame(maxWidth: .infinity, maxHeight: 16)
                 
                 VStack(spacing: 0) {
                     VStack(spacing: 0) {
@@ -180,7 +173,7 @@ struct CheckoutView: View {
                     CustomButtonView(action: {
                         navigateToNext = true
                     }, title: "Payment")
-                    .padding(.bottom, 12)
+                    .padding(.bottom, 40)
                     
                 }
                 .padding(.horizontal, 24)
@@ -194,6 +187,7 @@ struct CheckoutView: View {
         }
         .navigationBarBackButtonHidden(true)
         .background(EnableSwipeBackGesture())
+        .ignoresSafeArea(.all, edges: .bottom)
     }
 }
 
