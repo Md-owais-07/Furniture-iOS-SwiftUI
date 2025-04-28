@@ -15,7 +15,7 @@ struct AppState: View {
         NavigationStack(path: $appNavigation.path) {
             Group {
                 if !sessionManager.hasSeenOnboarding {
-                    ContentView()
+                    OnboardingView()
                 } else if !sessionManager.isLoggedIn {
                     LoginView()
                 } else {

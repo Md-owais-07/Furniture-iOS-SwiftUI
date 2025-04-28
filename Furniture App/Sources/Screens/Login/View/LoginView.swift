@@ -11,7 +11,6 @@ import FirebaseAuth
 struct LoginView: View {
     @State private var emailField: String = "t1@gmail.com"
     @State private var passwordField: String = "abcd12"
-    @State private var isNavigating = false
     @State private var isLoading: Bool = false
     @StateObject private var viewModel = LoginViewModel()
     @State private var toast: Toast? = nil
@@ -89,7 +88,6 @@ struct LoginView: View {
                                 viewModel.loginWithFirebase(email: emailField, password: passwordField) { result in
                                     if result {
                                         isLoading = false
-                                        isNavigating = true
                                         sessionManager.isLoggedIn = true
                                         sessionManager.userEmail = emailField
                                     }
@@ -97,9 +95,6 @@ struct LoginView: View {
                             }
                         }
                     }, title: "Log In")
-                    .navigationDestination(isPresented: $isNavigating) {
-                        CustomTabBarView()
-                    }
                     
                     Button {
                         //

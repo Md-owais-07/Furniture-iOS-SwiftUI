@@ -8,9 +8,9 @@
 import SwiftUI
 
 struct RegisterView: View {
-    @State private var fullNameField: String = ""
-    @State private var emailField: String = ""
-    @State private var passwordField: String = ""
+    @State private var fullNameField: String = "John Doe"
+    @State private var emailField: String = "john1@gmail.com"
+    @State private var passwordField: String = "abcd1234"
     @StateObject private var viewModel = RegisterViewModel()
     
     @EnvironmentObject var sessionManager: UserSessionManager
@@ -18,7 +18,6 @@ struct RegisterView: View {
     
     @State private var toast: Toast? = nil
     @State private var isLoading: Bool = false
-    @State private var isNavigating: Bool = false
     
     var body: some View {
         ZStack {
@@ -72,8 +71,8 @@ struct RegisterView: View {
                             }
                             DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
                                 viewModel.createUser(email: emailField, password: passwordField)
+                                navManager.popToRoot()
                                 sessionManager.isLoggedIn = true
-                                isNavigating = true
                                 sessionManager.userName = fullNameField
                                 sessionManager.userEmail = emailField
                                 isLoading = false
@@ -81,13 +80,10 @@ struct RegisterView: View {
                         }
                         
                     }, title: "Sign Up")
-                    .navigationDestination(isPresented: $isNavigating) {
-                        CustomTabBarView()
-                    }
                     
                     CustomButtonView(action: {
                         //
-                    }, title: "Sign In With Google", isImageVisible: true, imageName: "Google", bgColor: .white, textColor: .textClr)
+                    }, title: "Sign Un With Google", isImageVisible: true, imageName: "Google", bgColor: .white, textColor: .textClr)
                 }
                 .padding(.bottom, 24)
                 

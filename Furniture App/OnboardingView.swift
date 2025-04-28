@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct ContentView: View {
+struct OnboardingView: View {
     @State private var isNavigate: Bool = false
     @State private var currentPage = 0
     let pageCount = 3
@@ -65,5 +65,5 @@ struct ContentView: View {
 
 
 #Preview {
-    ContentView()
+    OnboardingView()
 }
