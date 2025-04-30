@@ -14,7 +14,6 @@ struct ProfileTabView: View {
     @State private var path = NavigationPath()
     
     @EnvironmentObject var sessionManager: UserSessionManager
-    @EnvironmentObject var navigationManager: NavigationManager
     @EnvironmentObject var navManager: AppNavigationManager
     
     @State private var navigateToNext: Bool = false

@@ -8,8 +8,7 @@
 import SwiftUI
 
 struct CheckoutView: View {
-    @State private var navigateToNext = false
-    @Environment(\.dismiss) var dismiss
+    @EnvironmentObject var navManager: AppNavigationManager
     
     var body: some View {
         ZStack {
@@ -20,7 +19,7 @@ struct CheckoutView: View {
                 ZStack {
                     HStack {
                         TopCircularButtonView(action: {
-                            dismiss()
+                            navManager.pop()
                         }, imageName: "backBtn")
                         
                         Spacer()
@@ -171,7 +170,7 @@ struct CheckoutView: View {
                     Spacer()
                     
                     CustomButtonView(action: {
-                        navigateToNext = true
+                        navManager.push(.shoppingTab(.payment))
                     }, title: "Payment")
                     .padding(.bottom, 40)
                     
@@ -180,9 +179,6 @@ struct CheckoutView: View {
                 .frame(maxWidth: .infinity, maxHeight: 268)
                 .background(.white)
                 .clipShape(RoundedCorner(radius: 24, corners: [.topLeft, .topRight]))
-            }
-            .navigationDestination(isPresented: $navigateToNext) {
-                PaymentView()
             }
         }
         .navigationBarBackButtonHidden(true)

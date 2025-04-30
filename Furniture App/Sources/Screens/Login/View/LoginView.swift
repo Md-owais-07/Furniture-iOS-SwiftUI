@@ -38,8 +38,8 @@ struct LoginView: View {
                 .padding(.top, 98)
                 
                 VStack(spacing: 16) {
-                    CustomTextFieldView(title: "Email", placeholder: "Enter Your Email", text: $emailField)
-                    CustomTextFieldView(title: "Password", placeholder: "••••••••", text: $passwordField, isSecure: true)
+                    CustomTextFieldView(title: "Email", placeholder: "Enter Your Email", text: $emailField).keyboardType(.emailAddress)
+                    CustomTextFieldView(title: "Password", placeholder: "••••••••", text: $passwordField, isSecure: true).keyboardType(.asciiCapable)
                 }
                 .padding(.bottom, 16)
                 

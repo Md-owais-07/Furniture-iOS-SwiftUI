@@ -47,9 +47,9 @@ struct RegisterView: View {
                 .padding(.bottom, 32)
                 
                 VStack(spacing: 16) {
-                    CustomTextFieldView(title: "Full Name", placeholder: "Enter Your Name", text: $fullNameField)
-                    CustomTextFieldView(title: "Email", placeholder: "Enter Your Email", text: $emailField)
-                    CustomTextFieldView(title: "Password", placeholder: "••••••••", text: $passwordField, isSecure: true)
+                    CustomTextFieldView(title: "Full Name", placeholder: "Enter Your Name", text: $fullNameField).keyboardType(.default)
+                    CustomTextFieldView(title: "Email", placeholder: "Enter Your Email", text: $emailField).keyboardType(.emailAddress)
+                    CustomTextFieldView(title: "Password", placeholder: "••••••••", text: $passwordField, isSecure: true).keyboardType(.asciiCapable)
                 }
                 .padding(.bottom, 24)
                 

@@ -9,8 +9,8 @@ import Foundation
 import SwiftUI
 
 class AppNavigationManager: ObservableObject {
-    
     @Published var path: [AppRoute] = []
+    @Published var selectedTab: CustomTabBarView.Tab = .home
     
     func push(_ route: AppRoute) {
         path.append(route)
@@ -24,6 +24,11 @@ class AppNavigationManager: ObservableObject {
     
     func popToRoot() {
         path.removeAll()
+    }
+    
+    func popToRootWithTab(_ tab: CustomTabBarView.Tab) {
+        path.removeAll()
+        selectedTab = tab
     }
 }
 
@@ -57,6 +62,8 @@ enum FavouriteTab: Hashable {
 enum ShoppingTab: Hashable {
     case checkout
     case payment
+    case verifyOtp
+    case paymentSuccess
 }
 
 enum ProfileTab: Hashable {
@@ -109,6 +116,10 @@ func shoppingTabDestination(_ route: ShoppingTab) -> some View {
         CheckoutView()
     case .payment:
         PaymentView()
+    case .verifyOtp:
+        VerifyOtpView()
+    case .paymentSuccess:
+        PaymentSuccessView()
     }
 }
 

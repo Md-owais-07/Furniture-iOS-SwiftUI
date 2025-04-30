@@ -14,6 +14,8 @@ struct ShoppingTabView: View {
     
     @Environment(\.dismiss) var dismiss
     
+    @EnvironmentObject var navManager: AppNavigationManager
+    
     var body: some View {
         ZStack {
             Color("AppColor").ignoresSafeArea(.all)
@@ -164,7 +166,8 @@ struct ShoppingTabView: View {
                         Spacer()
                         
                         CustomButtonView(action: {
-                            navigateToNext = true
+//                            navigateToNext = true
+                            navManager.push(.shoppingTab(.checkout))
                         }, title: "Check Out")
                         .padding(.horizontal, 24)
                         .padding(.bottom, 14)
@@ -174,9 +177,9 @@ struct ShoppingTabView: View {
                     .clipShape(RoundedCorner(radius: 24, corners: [.topLeft, .topRight]))
                 }
             }
-            .navigationDestination(isPresented: $navigateToNext) {
-                CheckoutView()
-            }
+//            .navigationDestination(isPresented: $navigateToNext) {
+//                CheckoutView()
+//            }
             
             ZStack {
                 VStack(spacing: -10) {

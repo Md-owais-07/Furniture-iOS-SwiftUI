@@ -8,9 +8,9 @@
 import SwiftUI
 
 struct CustomTabBarView: View {
-    @State private var selectedTab: Tab = .home
+    @EnvironmentObject var appNavigation: AppNavigationManager
     
-    enum Tab: String, CaseIterable {
+    public enum Tab: String, CaseIterable {
         case home = "home"
         case favourite = "favourite"
         case scan = "scan"
@@ -20,7 +20,7 @@ struct CustomTabBarView: View {
     
     var body: some View {
         ZStack(alignment: .bottom) {
-            TabView(selection: $selectedTab) {
+            TabView(selection: $appNavigation.selectedTab) {
                 HomeTabView()
                     .tag(Tab.home)
                 
@@ -51,46 +51,21 @@ struct CustomTabBarView: View {
             }
         }
         .navigationBarBackButtonHidden(true)
-//        .background(EnableSwipeBackGesture())
     }
     
-//    private func tabButton(for tab: Tab) -> some View {
-//        Button(action: {
-//            withAnimation { selectedTab = tab }
-//        }) {
-//            VStack(spacing: 5) {
-//                Image(tab.rawValue)
-//                    .resizable()
-//                    .renderingMode(.template)
-//                    .scaledToFit()
-//                    .frame(width: 20, height: 20)
-//                    .foregroundColor(selectedTab == tab ? Color("primaryColor") : Color("subTextClr"))
-//                
-//                Text(tabTitle(for: tab))
-//                    .font(.system(size: 12, weight: .medium))
-//                    .foregroundColor(selectedTab == tab ? Color("primaryColor") : Color("subTextClr"))
-//            }
-//        }
-//        .frame(maxWidth: .infinity)
-//    }
-    
-    private func tabButton(for tab: Tab) -> some View {
+    public func tabButton(for tab: Tab) -> some View {
         Button(action: {
-            withAnimation { selectedTab = tab }
+//            withAnimation { selectedTab = tab }
+            withAnimation {
+                appNavigation.selectedTab = tab
+            }
         }) {
             if tab == .scan {
                 VStack {
                     ZStack {
-                        //                        RoundedRectangle(cornerRadius: 70)
-                        //                            .fill(Color("AppColor"))
-                        //                            .frame(width: 70, height: 65)
-                        //                            .clipShape(Rectangle().offset(y: 30))
-                        //                            .offset(y: 3)
-                        
                         Circle()
                             .fill(Color("primaryColor"))
                             .frame(width: 48, height: 48)
-                        //                                                    .shadow(color: Color("primaryColor").opacity(0.3), radius: 10, x: 0, y: 4)
                         
                         Image(tab.rawValue)
                             .resizable()
@@ -108,18 +83,20 @@ struct CustomTabBarView: View {
                         .renderingMode(.template)
                         .scaledToFit()
                         .frame(width: 20, height: 20)
-                        .foregroundColor(selectedTab == tab ? Color("primaryColor") : Color("subTextClr"))
+                        .foregroundColor(appNavigation.selectedTab == tab ? Color("primaryColor") : Color("subTextClr"))
+//                        .foregroundColor(selectedTab == tab ? Color("primaryColor") : Color("subTextClr"))
                     
                     Text(tabTitle(for: tab))
                         .font(.system(size: 12, weight: .medium))
-                        .foregroundColor(selectedTab == tab ? Color("primaryColor") : Color("subTextClr"))
+                        .foregroundColor(appNavigation.selectedTab == tab ? Color("primaryColor") : Color("subTextClr"))
+//                        .foregroundColor(selectedTab == tab ? Color("primaryColor") : Color("subTextClr"))
                 }
             }
         }
         .frame(maxWidth: .infinity)
     }
     
-    private func tabTitle(for tab: Tab) -> String {
+    public func tabTitle(for tab: Tab) -> String {
         switch tab {
         case .home: return "Home"
         case .favourite: return "Favourite"
@@ -133,6 +110,7 @@ struct CustomTabBarView: View {
 
 #Preview {
     CustomTabBarView()
+        .environmentObject(AppNavigationManager())
         .environmentObject(UserSessionManager())
         .environmentObject(CartManager())
 }

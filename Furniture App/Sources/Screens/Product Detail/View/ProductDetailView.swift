@@ -129,7 +129,7 @@ struct ProductDetailView: View {
                 
                 VStack {
                     BottomButtonView(price: product.productPrice.formatted(.currency(code: "USD")))
-                }.frame(maxWidth: .infinity, maxHeight: 120).background(.red)
+                }.frame(maxWidth: .infinity, maxHeight: 120)
             }
         }
         .navigationBarBackButtonHidden(true)

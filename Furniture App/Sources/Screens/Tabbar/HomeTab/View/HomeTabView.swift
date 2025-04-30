@@ -10,7 +10,6 @@ import SwiftUI
 struct HomeTabView: View {
     @State private var searchText: String = ""
     
-    @EnvironmentObject var navigationManager: NavigationManager
     @EnvironmentObject var sessionManager: UserSessionManager
     @EnvironmentObject var navManager: AppNavigationManager
     
