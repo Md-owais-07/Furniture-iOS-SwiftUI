@@ -12,6 +12,7 @@ struct ProfileTabView: View {
     @StateObject private var viewModel = ProfileViewModel()
     @State private var isPresented: Bool = false
     @State private var path = NavigationPath()
+    @State private var isLoggedOut: Bool = false
     
     @EnvironmentObject var sessionManager: UserSessionManager
     @EnvironmentObject var navManager: AppNavigationManager
@@ -44,7 +45,7 @@ struct ProfileTabView: View {
                 .padding(.top, 8)
                 .frame(height: 48)
                 
-                ScrollView {
+                ScrollView(showsIndicators: false) {
                     VStack(spacing: 12) {
                         Image("user")
                             .resizable()
@@ -60,7 +61,8 @@ struct ProfileTabView: View {
                                 .font(Font.custom("Switzer-Regular", size: 14))
                                 .foregroundStyle(Color.subTextClr)
                         }
-                    }.padding(.vertical, 24)
+                    }
+                    .padding(.vertical, 24)
                     
                     VStack(spacing: 16) {
                         ForEach(menuItems) { item in
@@ -68,7 +70,7 @@ struct ProfileTabView: View {
                         }
                         
                         Button {
-                            sessionManager.isLoggedIn = false
+                            isLoggedOut = true
                         } label: {
                             HStack(spacing: 12) {
                                 Image("logout")
@@ -85,7 +87,14 @@ struct ProfileTabView: View {
                             .background(Color.white)
                             .cornerRadius(14)
                         }
+                        .alert("Do you want to log out?", isPresented: $isLoggedOut) {
+                            Button("Log Out", role: .destructive) {
+                                sessionManager.isLoggedIn = false
+                            }
+                            Button("Cancel", role: .cancel) { }
+                        }
                     }
+                    .padding(.bottom, 24)
                 }
             }
             .padding(.horizontal, 24)

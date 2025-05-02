@@ -6,18 +6,15 @@
 //
 
 import SwiftUI
+import FirebaseAuth
 
 struct RegisterView: View {
-    @State private var fullNameField: String = "John Doe"
-    @State private var emailField: String = "john1@gmail.com"
-    @State private var passwordField: String = "abcd1234"
     @StateObject private var viewModel = RegisterViewModel()
     
     @EnvironmentObject var sessionManager: UserSessionManager
     @EnvironmentObject var navManager: AppNavigationManager
     
     @State private var toast: Toast? = nil
-    @State private var isLoading: Bool = false
     
     var body: some View {
         ZStack {
@@ -47,38 +44,59 @@ struct RegisterView: View {
                 .padding(.bottom, 32)
                 
                 VStack(spacing: 16) {
-                    CustomTextFieldView(title: "Full Name", placeholder: "Enter Your Name", text: $fullNameField).keyboardType(.default)
-                    CustomTextFieldView(title: "Email", placeholder: "Enter Your Email", text: $emailField).keyboardType(.emailAddress)
-                    CustomTextFieldView(title: "Password", placeholder: "••••••••", text: $passwordField, isSecure: true).keyboardType(.asciiCapable)
+                    CustomTextFieldView(title: "Full Name", placeholder: "Enter Your Name", text: $viewModel.fullNameField).keyboardType(.default)
+                    CustomTextFieldView(title: "Email", placeholder: "Enter Your Email", text: $viewModel.emailField).keyboardType(.emailAddress)
+                    CustomTextFieldView(title: "Password", placeholder: "••••••••", text: $viewModel.passwordField, isSecure: true).keyboardType(.asciiCapable)
                 }
                 .padding(.bottom, 24)
                 
                 VStack(spacing: 16) {
                     CustomButtonView(action: {
-                        if emailField.isEmpty || passwordField.isEmpty || fullNameField.isEmpty {
+                        if viewModel.emailField.isEmpty || viewModel.passwordField.isEmpty || viewModel.fullNameField.isEmpty {
                             print("All fields are required")
                             toast = Toast(style: .error, message: "All fields are required")
-                        } else if !emailField.contains("@") {
+                        } else if !viewModel.emailField.contains("@") {
                             print("Enter valid email")
                             toast = Toast(style: .error, message: "Enter valid email")
-                        } else if passwordField.count < 6 {
+                        } else if viewModel.passwordField.count < 6 {
                             print("Password should be atleast 6 characters")
                             toast = Toast(style: .error, message: "Password should be atleast 6 characters")
                         } else {
-                            isLoading = true
-                            DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-                                toast = Toast(style: .success, message: "Register Successful")
-                            }
-                            DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
-                                viewModel.createUser(email: emailField, password: passwordField)
-                                navManager.popToRoot()
-                                sessionManager.isLoggedIn = true
-                                sessionManager.userName = fullNameField
-                                sessionManager.userEmail = emailField
-                                isLoading = false
+                            viewModel.isLoading = true
+                            
+                            viewModel.createUser(email: viewModel.emailField, password: viewModel.passwordField) { result in
+                                if result {
+                                    toast = Toast(style: .success, message: "Register Successful")
+                                    if let uid = Auth.auth().currentUser?.uid {
+                                        viewModel.createUserProfile(uid: uid, fullName: viewModel.fullNameField, email: viewModel.emailField) { profileSucces in
+                                            DispatchQueue.main.async {
+                                                viewModel.isLoading = false
+                                                if profileSucces {
+                                                    navManager.popToRoot()
+                                                    sessionManager.isLoggedIn = true
+                                                    sessionManager.userName = viewModel.fullNameField
+                                                    sessionManager.userEmail = viewModel.emailField
+                                                } else {
+                                                    toast = Toast(style: .error, message: "Failed to save user profile.")
+                                                }
+                                            }
+                                        }
+                                    } else {
+                                        viewModel.isLoading = false
+                                        toast = Toast(style: .error, message: "Could not retrieve user ID.")
+                                    }
+                                } else {
+                                    DispatchQueue.main.async {
+                                        viewModel.isLoading = false
+                                        if let errorMessage = viewModel.errorMessage {
+                                            toast = Toast(style: .error, message: errorMessage)
+                                        } else {
+                                            toast = Toast(style: .error, message: "Something went wrong.")
+                                        }
+                                    }
+                                }
                             }
                         }
-                        
                     }, title: "Sign Up")
                     
                     CustomButtonView(action: {
@@ -86,7 +104,7 @@ struct RegisterView: View {
                     }, title: "Sign Un With Google", isImageVisible: true, imageName: "Google", bgColor: .white, textColor: .textClr)
                 }
                 .padding(.bottom, 24)
-                
+    
                 
                 HStack {
                     Text("Already have an account?")
@@ -107,7 +125,7 @@ struct RegisterView: View {
             .padding(.horizontal, 24)
             
             ZStack {
-                if isLoading {
+                if viewModel.isLoading {
                     LottieView(animationName: "App-animation", play: true, loopMode: .loop)
                         .frame(width: 200, height: 200)
                 }

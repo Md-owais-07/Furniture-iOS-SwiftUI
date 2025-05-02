@@ -8,13 +8,11 @@
 import SwiftUI
 
 struct ShoppingTabView: View {
-    @EnvironmentObject var cartManager: CartManager
     @State private var quantity: Int = 0
-    @State private var navigateToNext = false
     
     @Environment(\.dismiss) var dismiss
-    
     @EnvironmentObject var navManager: AppNavigationManager
+    @EnvironmentObject var cartManager: CartManager
     
     var body: some View {
         ZStack {
@@ -68,7 +66,6 @@ struct ShoppingTabView: View {
                                                 .frame(maxWidth: .infinity, alignment: .leading)
                                         }
                                         
-                                        //                                        Text(item.productPrice.formatted(.currency(code: "USD")))
                                         Text("$\(cartManager.totalPrice, specifier: "%.2f")")
                                             .font(Font.custom("Switzer-Medium", size: 16))
                                             .foregroundStyle(Color.primaryButton)
@@ -90,7 +87,7 @@ struct ShoppingTabView: View {
                                 .cornerRadius(14)
                             }
                         }
-                        .padding(.top, 24)
+                        .padding(.vertical, 24)
                     }
                 }
                 .padding(.horizontal, 24)
@@ -166,7 +163,6 @@ struct ShoppingTabView: View {
                         Spacer()
                         
                         CustomButtonView(action: {
-//                            navigateToNext = true
                             navManager.push(.shoppingTab(.checkout))
                         }, title: "Check Out")
                         .padding(.horizontal, 24)
@@ -177,9 +173,6 @@ struct ShoppingTabView: View {
                     .clipShape(RoundedCorner(radius: 24, corners: [.topLeft, .topRight]))
                 }
             }
-//            .navigationDestination(isPresented: $navigateToNext) {
-//                CheckoutView()
-//            }
             
             ZStack {
                 VStack(spacing: -10) {

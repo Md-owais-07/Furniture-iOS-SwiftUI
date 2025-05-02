@@ -9,9 +9,6 @@ import SwiftUI
 import FirebaseAuth
 
 struct LoginView: View {
-    @State private var emailField: String = "t1@gmail.com"
-    @State private var passwordField: String = "abcd12"
-    @State private var isLoading: Bool = false
     @StateObject private var viewModel = LoginViewModel()
     @State private var toast: Toast? = nil
     
@@ -38,8 +35,8 @@ struct LoginView: View {
                 .padding(.top, 98)
                 
                 VStack(spacing: 16) {
-                    CustomTextFieldView(title: "Email", placeholder: "Enter Your Email", text: $emailField).keyboardType(.emailAddress)
-                    CustomTextFieldView(title: "Password", placeholder: "••••••••", text: $passwordField, isSecure: true).keyboardType(.asciiCapable)
+                    CustomTextFieldView(title: "Email", placeholder: "Enter Your Email", text: $viewModel.emailField).keyboardType(.emailAddress)
+                    CustomTextFieldView(title: "Password", placeholder: "••••••••", text: $viewModel.passwordField, isSecure: true).keyboardType(.asciiCapable)
                 }
                 .padding(.bottom, 16)
                 
@@ -72,25 +69,47 @@ struct LoginView: View {
                 
                 VStack(spacing: 16) {
                     CustomButtonView(action: {
-                        if emailField.isEmpty || passwordField.isEmpty {
+                        if viewModel.emailField.isEmpty || viewModel.passwordField.isEmpty {
                             print("Email and Password fields are required")
                             toast = Toast(style: .error, message: "Email and Password fields are required")
-                        } else if !emailField.contains("@") {
+                        } else if !viewModel.emailField.contains("@") {
                             print("Enter valid email")
                             toast = Toast(style: .error, message: "Enter valid email address")
-                        } else if passwordField.count < 6 {
+                        } else if viewModel.passwordField.count < 6 {
                             print("Password should be atleast 6 characters")
                             toast = Toast(style: .error, message: "Password should be atleast 6 characters")
                         } else {
-                            isLoading = true
-                            DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
-                                toast = Toast(style: .success, message: "Login Successful")
-                                viewModel.loginWithFirebase(email: emailField, password: passwordField) { result in
-                                    if result {
-                                        isLoading = false
-                                        sessionManager.isLoggedIn = true
-                                        sessionManager.userEmail = emailField
+                            viewModel.isLoading = true
+                            
+                            viewModel.loginWithFirebase(email: viewModel.emailField, password: viewModel.passwordField) { result in
+                                viewModel.isLoading = false
+                                if result {
+                                    print("LOGIN ONE SUCCESS")
+                                    toast = Toast(style: .success, message: "Login Successful")
+                                    
+                                    if let uid = Auth.auth().currentUser?.uid {
+                                        print("GET CURRECT USER ID: \(uid)")
+                                        
+                                        viewModel.fetchUserProfile(uid: uid) { userProfile in
+                                            print("USER PROFILE FETCH SUCCESS")
+                                            DispatchQueue.main.async {
+                                                
+                                                viewModel.isLoading = false
+                                                if let profile = userProfile {
+                                                    sessionManager.isLoggedIn = true
+                                                    sessionManager.userName = profile.fullName
+                                                    sessionManager.userEmail = profile.email
+                                                } else {
+                                                    print("Failed to fetch profile")
+                                                }
+                                            }
+                                        }
+                                    } else {
+                                        print("Failed to fetch user id")
                                     }
+                                } else {
+                                    print("LOGIN ONE FAILED")
+                                    toast = Toast(style: .error, message: viewModel.errorMessage ?? "Login failed")
                                 }
                             }
                         }
@@ -128,7 +147,7 @@ struct LoginView: View {
             .padding(.horizontal, 24)
             
             ZStack {
-                if isLoading {
+                if viewModel.isLoading {
                     LottieView(animationName: "App-animation", play: true, loopMode: .loop)
                         .frame(width: 200, height: 200)
                 }

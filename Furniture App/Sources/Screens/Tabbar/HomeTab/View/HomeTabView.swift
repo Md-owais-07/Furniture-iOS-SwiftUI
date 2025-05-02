@@ -97,7 +97,6 @@ struct HomeTabView: View {
                                 .font(Font.custom("Switzer-Regular", size: 13))
                                 .foregroundStyle(Color.primaryButton)
                         }
-                        
                     }
                     .padding(.horizontal, 24)
                     .padding(.bottom, 16)
@@ -109,7 +108,7 @@ struct HomeTabView: View {
                             }
                         }
                     }
-                    .padding(.bottom, 45)
+                    .padding(.bottom, 24)
                 }
             }
             .padding(.top, 6)
