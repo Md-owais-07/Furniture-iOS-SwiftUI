@@ -42,49 +42,7 @@ struct ShoppingTabView: View {
                     ScrollView(.vertical, showsIndicators: false) {
                         VStack(spacing: 24) {
                             ForEach(cartManager.items) { item in
-                                HStack(spacing: 0) {
-                                    ZStack {
-                                        Image(item.productImage)
-                                            .resizable()
-                                            .frame(width: 45, height: 50)
-                                    }
-                                    .frame(width: 72, height: 72)
-                                    .background(Color.buttonShape)
-                                    .cornerRadius(12)
-                                    .padding(.leading, 16)
-                                    
-                                    VStack(spacing: 0) {
-                                        VStack(spacing: 6) {
-                                            Text(item.productTitle)
-                                                .font(Font.custom("Switzer-Semibold", size: 16))
-                                                .foregroundStyle(Color.textClr)
-                                                .frame(maxWidth: .infinity, alignment: .leading)
-                                            
-                                            Text(item.productSubTitle)
-                                                .font(Font.custom("Switzer-Regular", size: 13))
-                                                .foregroundStyle(Color.subTextClr)
-                                                .frame(maxWidth: .infinity, alignment: .leading)
-                                        }
-                                        
-                                        Text("$\(cartManager.totalPrice, specifier: "%.2f")")
-                                            .font(Font.custom("Switzer-Medium", size: 16))
-                                            .foregroundStyle(Color.primaryButton)
-                                            .padding(.top, 12)
-                                            .frame(maxWidth: .infinity, alignment: .leading)
-                                    }
-                                    .padding(.top, 4)
-                                    .padding(.leading, 12)
-                                    
-                                    Spacer()
-                                    
-                                    HStack {
-                                        ProductQuantityButton(quantity: $quantity)
-                                    }
-                                    .padding(.trailing, 16)
-                                }
-                                .frame(height: 104)
-                                .background(.white)
-                                .cornerRadius(14)
+                                AddToCartView(image: item.productImage, title: item.productTitle, subtitle: item.productSubTitle, price: item.productPrice)
                             }
                         }
                         .padding(.vertical, 24)
@@ -114,7 +72,7 @@ struct ShoppingTabView: View {
                                     
                                     Spacer()
                                     
-                                    Text("$920")
+                                    Text("$\(cartManager.totalPrice, specifier: "%.2f")")
                                         .font(Font.custom("Switzer-Regular", size: 16))
                                         .foregroundStyle(Color.primaryButton)
                                 }
@@ -127,7 +85,7 @@ struct ShoppingTabView: View {
                                     
                                     Spacer()
                                     
-                                    Text("$920")
+                                    Text("$\(cartManager.shippingCharge, specifier: "%.2f")")
                                         .font(Font.custom("Switzer-Regular", size: 16))
                                         .foregroundStyle(Color.primaryButton)
                                 }
@@ -150,7 +108,7 @@ struct ShoppingTabView: View {
                                 
                                 Spacer()
                                 
-                                Text("$978")
+                                Text("$\(cartManager.total, specifier: "%.2f")")
                                     .font(Font.custom("Switzer-Semibold", size: 16))
                                     .foregroundStyle(Color.primaryButton)
                             }
