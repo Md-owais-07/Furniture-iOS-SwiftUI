@@ -193,7 +193,7 @@ struct CategoryListView: View {
                         }
                     }
                 }
-                .padding(.horizontal, 24)
+//                .padding(.horizontal, 24)
                 .padding(.bottom, 0)
             }
             
@@ -204,17 +204,16 @@ struct CategoryListView: View {
                 
                 Spacer()
                 
-                Button {
-                    //
+                NavigationLink {
+                    MostCategoryView()
                 } label: {
                     Text("View All")
                         .font(Font.custom("Switzer-Regular", size: 13))
                         .foregroundStyle(Color.primaryButton)
                 }
-                
             }
             .frame(height: 24)
-            .padding(.horizontal, 24)
+//            .padding(.horizontal, 24)
             
             ScrollView(.horizontal, showsIndicators: false) {
                 HStack(spacing: -8) {
@@ -226,6 +225,7 @@ struct CategoryListView: View {
                 }
             }
         }
+        .padding(.horizontal, 24)
     }
 }
 

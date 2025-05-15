@@ -50,9 +50,7 @@ struct ShoppingTabView: View {
                 }
                 .padding(.horizontal, 24)
                 
-                if cartManager.items.isEmpty {
-                    //
-                } else {
+                if !cartManager.items.isEmpty {
                     VStack(spacing: 0) {
                         VStack(spacing: 0) {
                             VStack {

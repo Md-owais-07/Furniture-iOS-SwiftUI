@@ -13,7 +13,6 @@ struct ProductCardView: View {
     @EnvironmentObject var cartManager: CartManager
     @State private var isAddedToCart: Bool = false
     @State private var quantity: Int = 0
-    @ObservedObject var manager = CartManager()
     
     var body: some View {
         ZStack() {
@@ -24,7 +23,7 @@ struct ProductCardView: View {
                     Image(product.productImage)
                         .resizable()
                         .scaledToFill()
-                        .frame(maxWidth: 86, maxHeight: 120)
+                        .frame(maxWidth: 85, maxHeight: 110)
                         .padding(.bottom, 20)
                     
                     HStack(spacing: 0) {
@@ -77,9 +76,9 @@ struct ProductCardView: View {
             }
             .padding([.horizontal, .vertical], 16)
         }
-        .frame(width: 212, height: 255)
+        .frame(width: 190, height: 250)
         .cornerRadius(14)
-        .padding(.leading, 24)
+//        .padding(.leading, 24)
     }
 }
 
