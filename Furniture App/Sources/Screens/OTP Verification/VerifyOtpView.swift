@@ -11,12 +11,17 @@ struct VerifyOtpView: View {
     @EnvironmentObject var navManager: AppNavigationManager
     @Environment(\.dismiss) var dismiss
     
-    @State private var otp: String = ""
+    @State private var otp1: String = ""
+    @State private var otp2: String = ""
+    @State private var otp3: String = ""
+    @State private var otp4: String = ""
     @State private var isPresent: Bool = false
     
     @State private var isLoading: Bool = false
     @State private var isLoading1: Bool = false
     @State private var toast: Toast? = nil
+    
+    @State private var otpArray = Array(repeating: "", count: 4)
     
     var body: some View {
         ZStack {
@@ -52,9 +57,10 @@ struct VerifyOtpView: View {
                 }
                 .padding(.top, 60)
                 
-                VStack {
-                    OtpTextField(otp: $otp)
-                }.padding(.top, 70)
+                HStack(spacing: 20) {
+                    OtpTextField(otp: $otpArray)
+                }
+                .padding(.top, 70)
                 
                 
                 VStack(spacing: 16) {
@@ -157,7 +163,7 @@ struct VerifyOtpView: View {
                 .padding(.horizontal, 24)
                 .presentationDetents([.height(528)])
                 .presentationDragIndicator(.hidden)
-            //  .interactiveDismissDisabled()
+                //  .interactiveDismissDisabled()
                 .ignoresSafeArea(.all, edges: .bottom)
             }
             

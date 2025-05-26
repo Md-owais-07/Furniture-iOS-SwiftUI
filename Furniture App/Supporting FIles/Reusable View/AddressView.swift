@@ -14,6 +14,8 @@ struct AddressView: View {
     var phoneNumber: String = ""
     var address: String = ""
     
+    @Binding var isEdit: Bool
+    
     var body: some View {
         VStack(spacing: 12) {
             HStack {
@@ -44,17 +46,21 @@ struct AddressView: View {
                 
                 Spacer()
                 
-                HStack {
-                    Button {
-                        action()
-                    } label: {
-                        Image("edit")
-                            .resizable()
-                            .scaledToFit()
-                            .frame(width: 25, height: 25)
+                if isEdit {
+                    HStack {
+                        Button {
+                            action()
+                        } label: {
+                            Image("edit")
+                                .resizable()
+                                .scaledToFit()
+                                .frame(width: 25, height: 25)
+                        }
+                        .padding(.trailing, 16)
                     }
-                    .padding(.trailing, 16)
                 }
+                
+                
             }
             
         }
@@ -67,5 +73,5 @@ struct AddressView: View {
 #Preview {
     AddressView(action: {
         print("helo")
-    })
+    }, isEdit: .constant(true))
 }

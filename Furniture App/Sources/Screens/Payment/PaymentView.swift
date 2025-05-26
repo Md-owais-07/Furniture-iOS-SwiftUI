@@ -21,6 +21,7 @@ struct PaymentView: View {
     @State private var isNavigating: Bool = false
     
     @EnvironmentObject var navManager: AppNavigationManager
+    @EnvironmentObject var cartManager: CartManager
     
     var body: some View {
         ZStack {
@@ -262,7 +263,7 @@ struct PaymentView: View {
                         
                         Spacer()
                         
-                        Text("$58.80")
+                        Text("$\(cartManager.total, specifier: "%.2f")")
                             .font(Font.custom("Switzer-Medium", size: 20))
                             .foregroundStyle(Color.primaryButton)
                     }
@@ -314,6 +315,7 @@ struct PaymentView: View {
 
 #Preview {
     PaymentView()
+        .environmentObject(CartManager())
 }
 
 

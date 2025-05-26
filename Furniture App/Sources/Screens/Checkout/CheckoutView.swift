@@ -9,6 +9,9 @@ import SwiftUI
 
 struct CheckoutView: View {
     @EnvironmentObject var navManager: AppNavigationManager
+    @EnvironmentObject var cartManager: CartManager
+    
+    @State private var isEdit: Bool = false
     
     var body: some View {
         ZStack {
@@ -50,7 +53,7 @@ struct CheckoutView: View {
                             } label: {
                                 AddressView(action: {
                                     print("hello 1...")
-                                }, image: "check", title: "Home Address", phoneNumber: "+91 9565785432", address: "Hsr layout, bangalore")
+                                }, image: "check", title: "Home Address", phoneNumber: "+91 9565785432", address: "Hsr layout, bangalore", isEdit: $isEdit)
                             }
                             
                             Button {
@@ -58,7 +61,7 @@ struct CheckoutView: View {
                             } label: {
                                 AddressView(action: {
                                     print("hello 2...")
-                                }, image: "uncheck", title: "Office Address", phoneNumber: "+91 9565785432", address: "Hsr layout, bangalore")
+                                }, image: "uncheck", title: "Office Address", phoneNumber: "+91 9565785432", address: "Hsr layout, bangalore", isEdit: $isEdit)
                             }
                             
                         }
@@ -98,6 +101,7 @@ struct CheckoutView: View {
                     }
                     .frame(height: 268)
                     .padding(.horizontal, 24)
+                    .padding(.bottom, 16)
                 }
                 .scrollIndicators(.hidden)
                 
@@ -120,7 +124,7 @@ struct CheckoutView: View {
                                 
                                 Spacer()
                                 
-                                Text("$920")
+                                Text("$\(cartManager.totalPrice, specifier: "%.2f")")
                                     .font(Font.custom("Switzer-Regular", size: 16))
                                     .foregroundStyle(Color.primaryButton)
                             }
@@ -133,7 +137,7 @@ struct CheckoutView: View {
                                 
                                 Spacer()
                                 
-                                Text("$920")
+                                Text("$\(cartManager.shippingCharge, specifier: "%.2f")")
                                     .font(Font.custom("Switzer-Regular", size: 16))
                                     .foregroundStyle(Color.primaryButton)
                             }
@@ -156,7 +160,7 @@ struct CheckoutView: View {
                             
                             Spacer()
                             
-                            Text("$978")
+                            Text("$\(cartManager.total, specifier: "%.2f")")
                                 .font(Font.custom("Switzer-Semibold", size: 16))
                                 .foregroundStyle(Color.primaryButton)
                         }
@@ -189,4 +193,5 @@ struct CheckoutView: View {
 
 #Preview {
     CheckoutView()
+        .environmentObject(CartManager())
 }
