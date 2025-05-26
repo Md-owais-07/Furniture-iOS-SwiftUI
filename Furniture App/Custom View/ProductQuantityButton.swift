@@ -46,5 +46,5 @@ struct ProductQuantityButton: View {
 }
 
 #Preview {
-    ProductQuantityButton(quantity: .constant(0))
+    ProductQuantityButton(quantity: .constant(1))
 }

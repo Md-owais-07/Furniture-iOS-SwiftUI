@@ -9,9 +9,9 @@ import SwiftUI
 
 struct ImageScrollView: View {
     let items = [
-        ("25% Discount", "For a cozy yellow set!", "Learn More"),
-        ("35% Discount", "For a cozy blue set!", "Shop Now"),
-        ("40% Off", "Limited time offer!", "Grab Deal")
+        ("25% Discount", "For a cozy yellow set!", "Learn More", "sofa1"),
+        ("35% Discount", "For a cozy blue set!", "Shop Now", "sd-1"),
+        ("40% Off", "Limited time offer!", "Grab Deal", "sofa1")
     ]
     
     @State private var currentPage = 0
@@ -25,7 +25,8 @@ struct ImageScrollView: View {
                         title: items[index].0,
                         subTitle: items[index].1,
                         buttonTitle: items[index].2,
-                        imageName: "sofa1"
+                        imageName: items[index].3
+//                        imageName: "sofa1"
                     )
                     .tag(index)
                 }

@@ -43,20 +43,22 @@ struct HomeTabView: View {
                     HStack {
                         HStack {
                             Image("search")
+                                .resizable()
+                                .frame(width: 20, height: 20)
                             
-                            TextField("Search Furniture", text: $searchText)
-                                .font(Font.custom("Switzer-Regular", size: 16))
-                                .foregroundStyle(.subTextClr)
+                            NavigationLink {
+                                SearchBarActionView()
+                            } label: {
+                                Text("Search Furniture")
+                                    .font(Font.custom("Switzer-Regular", size: 16))
+                                    .foregroundStyle(.subTextClr)
+                                    .frame(height: 48)
+                                    .frame(maxWidth: .infinity, alignment: .leading)
+                            }
                             
                             Spacer()
-                            
-                            Button {
-                                //
-                            } label: {
-                                Image("filter")
-                            }
                         }
-                        .frame(height: 48)
+                        .frame(maxWidth: .infinity, alignment: .leading)
                         .padding(.horizontal, 16)
                     }
                     .background(.white)
@@ -72,7 +74,6 @@ struct HomeTabView: View {
                             .padding(.top, 24)
                             .frame(maxWidth: .infinity, alignment: .leading)
                             .padding(.horizontal, 24)
-                        
                         
                         // Image Horizontal Scrolling
                         ImageScrollView()
@@ -90,8 +91,16 @@ struct HomeTabView: View {
                             .foregroundStyle(Color.textClr)
                         
                         Spacer()
-                        Button {
-                            //
+                        
+                        //                        Button {
+                        //                            //
+                        //                        } label: {
+                        //                            Text("View All")
+                        //                                .font(Font.custom("Switzer-Regular", size: 13))
+                        //                                .foregroundStyle(Color.primaryButton)
+                        //                        }
+                        NavigationLink {
+                            MostCategoryView(title: "Popular")
                         } label: {
                             Text("View All")
                                 .font(Font.custom("Switzer-Regular", size: 13))
@@ -104,11 +113,28 @@ struct HomeTabView: View {
                     ScrollView(.horizontal, showsIndicators: false) {
                         HStack(spacing: -8) {
                             ForEach(productsDataArray) { product in
-                                PopularProductView(products: product)
+                                //                                PopularProductView(products: product)
+                                NavigationLink {
+                                    ProductDetailView(product: product)
+                                } label: {
+                                    PopularProductView(products: product)
+                                }
+                                
                             }
                         }
                     }
                     .padding(.bottom, 24)
+                    
+                    //                    ScrollView(.horizontal, showsIndicators: false) {
+                    //                        HStack(spacing: 16) {
+                    //                            ForEach(filteredProducts) { product in
+                    //                                NavigationLink(destination: ProductDetailView(product: product)) {
+                    //                                    ProductCardView(product: product)
+                    //                                }
+                    //                            }
+                    //                        }
+                    //                        .padding(.horizontal, 24)
+                    //                    }
                 }
             }
             .padding(.top, 6)

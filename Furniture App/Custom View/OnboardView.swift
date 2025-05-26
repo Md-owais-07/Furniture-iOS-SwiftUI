@@ -12,17 +12,17 @@ struct OnboardView: View {
     let title: String
     
     var body: some View {
-        VStack(spacing: 0) {
+        VStack(spacing: 30) {
             Image(imageName)
                 .resizable()
                 .scaledToFit()
                 .frame(maxWidth: .infinity)
                 .clipShape(.circle)
-                .padding(.top, -120)
+                .padding(.top, -30)
             
             Text(title)
                 .frame(height: 96)
-                .padding(.top, -65)
+                .padding(.top, 0)
                 .foregroundStyle(Color("textClr"))
                 .font(.system(size: 24, weight: .medium, design: .default))
                 .multilineTextAlignment(.center)
@@ -32,5 +32,5 @@ struct OnboardView: View {
 }
 
 #Preview {
-    OnboardView(imageName: "Sofa", title: "Demo")
+    OnboardView(imageName: "on-1", title: "Demo")
 }

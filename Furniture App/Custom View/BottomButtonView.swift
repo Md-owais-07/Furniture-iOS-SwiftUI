@@ -9,7 +9,8 @@ import SwiftUI
 
 struct BottomButtonView: View {
     var price: String = "100"
-    @State private var quantity: Int = 0
+    
+    @State private var quantity: Int = 1
     
     var body: some View {
         

@@ -41,6 +41,7 @@
 import SwiftUI
 
 struct MostCategoryView: View {
+    let title: String
     
     let columns: [GridItem] = [
         GridItem(.flexible(), spacing: nil, alignment: nil),
@@ -52,7 +53,8 @@ struct MostCategoryView: View {
             Color("AppColor").ignoresSafeArea(.all)
             
             VStack {
-                HeaderView(title: "Most Interested")
+                
+                HeaderView(title: title)
                 
                 ScrollView(showsIndicators: false) {
                     LazyVGrid(columns: columns, spacing: 14) {
@@ -70,5 +72,5 @@ struct MostCategoryView: View {
 }
 
 #Preview {
-    MostCategoryView()
+    MostCategoryView(title: "Demo")
 }

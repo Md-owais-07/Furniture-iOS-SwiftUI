@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct AddToCartView: View {
-    @State private var quantity: Int = 0
+    @State private var quantity: Int = 1
     
     var image: String = ""
     var title: String = ""

@@ -15,11 +15,11 @@ struct ProductCardView: View {
     @State private var quantity: Int = 0
     
     var body: some View {
-        ZStack() {
+        ZStack {
             Color.white
-            ZStack() {
+            ZStack {
                 Color.white
-                VStack() {
+                VStack {
                     Image(product.productImage)
                         .resizable()
                         .scaledToFill()

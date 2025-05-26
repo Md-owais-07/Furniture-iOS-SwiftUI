@@ -10,16 +10,18 @@ import SwiftUI
 struct OnboardingView: View {
     @State private var isNavigate: Bool = false
     @State private var currentPage = 0
-    let pageCount = 3
+    
     @EnvironmentObject var sessionManager: UserSessionManager
     @EnvironmentObject var navManager: AppNavigationManager
+    
+    let pageCount = 3
     
     var body: some View {
         VStack {
             TabView(selection: $currentPage) {
-                OnboardView(imageName: "Sofa", title: "View And Exprience Furniture With The Help Of Augmented Reality").tag(0)
-                OnboardView(imageName: "Sofa", title: "Find the perfect furniture for your space").tag(1)
-                OnboardView(imageName: "Sofa", title: "Get started with our app today").tag(2)
+                OnboardView(imageName: "on-1", title: "View And Exprience Furniture With The Help Of Augmented Reality").tag(0)
+                OnboardView(imageName: "on-2", title: "Find the perfect furniture for your space").tag(1)
+                OnboardView(imageName: "on-3", title: "Get started with our app today").tag(2)
             }
             .tabViewStyle(.page(indexDisplayMode: .always))
             .indexViewStyle(.page(backgroundDisplayMode: .never))

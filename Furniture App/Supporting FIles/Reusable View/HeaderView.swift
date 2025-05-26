@@ -10,13 +10,14 @@ import SwiftUI
 struct HeaderView: View {
     var action: () -> Void = {}
     let title: String
-    @EnvironmentObject var navManager: AppNavigationManager
+//    @EnvironmentObject var navManager: AppNavigationManager
+    @Environment(\.dismiss) var dismiss
     
     var body: some View {
         ZStack {
             HStack {
                 TopCircularButtonView(action: {
-                    navManager.pop()
+                    dismiss()
                 }, imageName: "backBtn")
                 
                 Spacer()

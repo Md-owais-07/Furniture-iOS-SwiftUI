@@ -55,7 +55,6 @@ struct CustomTabBarView: View {
     
     public func tabButton(for tab: Tab) -> some View {
         Button(action: {
-//            withAnimation { selectedTab = tab }
             withAnimation {
                 appNavigation.selectedTab = tab
             }
@@ -75,7 +74,7 @@ struct CustomTabBarView: View {
                             .foregroundColor(.white)
                     }
                 }
-                //                .offset(y: -35)
+                
             } else {
                 VStack(spacing: 5) {
                     Image(tab.rawValue)
@@ -84,12 +83,10 @@ struct CustomTabBarView: View {
                         .scaledToFit()
                         .frame(width: 20, height: 20)
                         .foregroundColor(appNavigation.selectedTab == tab ? Color("primaryColor") : Color("subTextClr"))
-//                        .foregroundColor(selectedTab == tab ? Color("primaryColor") : Color("subTextClr"))
                     
                     Text(tabTitle(for: tab))
                         .font(.system(size: 12, weight: .medium))
                         .foregroundColor(appNavigation.selectedTab == tab ? Color("primaryColor") : Color("subTextClr"))
-//                        .foregroundColor(selectedTab == tab ? Color("primaryColor") : Color("subTextClr"))
                 }
             }
         }
