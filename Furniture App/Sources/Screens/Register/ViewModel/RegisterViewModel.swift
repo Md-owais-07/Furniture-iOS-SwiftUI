@@ -10,9 +10,9 @@ import FirebaseAuth
 import FirebaseFirestore
 
 class RegisterViewModel: ObservableObject {
-    @Published var fullNameField: String = "John Doe"
-    @Published var emailField: String = "john1@gmail.com"
-    @Published var passwordField: String = "abcd1234"
+    @Published var fullNameField: String = ""
+    @Published var emailField: String = ""
+    @Published var passwordField: String = ""
     @Published var errorMessage: String?
     @Published var isLoading: Bool = false
     

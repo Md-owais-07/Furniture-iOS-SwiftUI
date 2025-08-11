@@ -10,10 +10,10 @@ import SwiftUI
 struct PaymentView: View {
     @State private var promoCode: String = ""
     
-    @State private var cardNumberTF: String = "7463  6464  7382  7465"
-    @State private var cardHolderNameTF: String = "John Doe"
-    @State private var cardExpiryDateTF: String = "12/25"
-    @State private var cardCvvTF: String = "999"
+    @State private var cardNumberTF: String = ""
+    @State private var cardHolderNameTF: String = ""
+    @State private var cardExpiryDateTF: String = ""
+    @State private var cardCvvTF: String = ""
     @State private var cardValidation: Bool = true
     
     @State private var toast: Toast? = nil

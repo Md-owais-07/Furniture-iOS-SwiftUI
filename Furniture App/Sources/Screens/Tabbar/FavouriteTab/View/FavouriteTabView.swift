@@ -22,9 +22,11 @@ struct FavouriteTabView: View {
                     }
                     
                     HStack {
+                        
                         Spacer()
+                        
                         TopCircularButtonView(action: {
-                            //       
+                            //
                         }, imageName: "fav")
                     }
                     
@@ -44,7 +46,7 @@ struct FavouriteTabView: View {
                     LottieView(animationName: "fav", play: true, loopMode: .loop)
                         .frame(width: 180, height: 180)
                     
-                    Text("Your cart is empty")
+                    Text("Your wishlist is empty")
                         .font(Font.custom("Switzer-Regular", size: 16))
                         .foregroundStyle(Color.subTextClr)
                 }

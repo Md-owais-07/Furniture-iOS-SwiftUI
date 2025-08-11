@@ -10,8 +10,8 @@ import FirebaseAuth
 import FirebaseFirestore
 
 class LoginViewModel: ObservableObject {
-    @Published var emailField: String = "t1@gmail.com"
-    @Published var passwordField: String = "abcd12"
+    @Published var emailField: String = ""
+    @Published var passwordField: String = ""
     @Published var errorMessage: String?
     @Published var isLoading: Bool = false
     

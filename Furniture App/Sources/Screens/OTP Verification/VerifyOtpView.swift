@@ -163,7 +163,6 @@ struct VerifyOtpView: View {
                 .padding(.horizontal, 24)
                 .presentationDetents([.height(528)])
                 .presentationDragIndicator(.hidden)
-                //  .interactiveDismissDisabled()
                 .ignoresSafeArea(.all, edges: .bottom)
             }
             
