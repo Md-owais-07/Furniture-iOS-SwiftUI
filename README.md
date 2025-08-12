@@ -8,8 +8,9 @@ It features user authentication (login/register), a custom tab bar, product brow
 
 ## 📹 App Demo
 
+<p align="center">
 ![Image](https://github.com/user-attachments/assets/862a0300-b1e7-44f1-bf66-0aafef7fbaff)
-
+</p>
 ---
 
 ## ✨ Features
