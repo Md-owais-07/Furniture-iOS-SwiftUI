@@ -6,6 +6,11 @@ It features user authentication (login/register), a custom tab bar, product brow
 
 ---
 
+## 📹 App Demo
+
+
+---
+
 ## 📸 Screenshots
 <p align="center">
   <img src="docs/screenshots/welcome.png" alt="Welcome Screen" width="250" style="margin-right:20px;">
