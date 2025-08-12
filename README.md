@@ -12,6 +12,7 @@ It features user authentication (login/register), a custom tab bar, product brow
   <img src="docs/screenshots/register.png" alt="Register Screen" width="250" style="margin-right:20px;">
   <img src="docs/screenshots/dashboard.png" alt="Home Screen" width="250" style="margin-right:20px;">
   <img src="docs/screenshots/details.png" alt="Product Details Screen" width="250" style="margin-right:20px;">
+  <img src="docs/screenshots/payment.png" alt="Payment Screen" width="250" style="margin-right:20px;">
   <img src="docs/screenshots/profile.png" alt="Profile Screen" width="250">
 </p>
 
