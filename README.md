@@ -8,9 +8,11 @@ It features user authentication (login/register), a custom tab bar, product brow
 
 ## 📸 Screenshots
 <p align="center">
-  <img src="docs/screenshots/register.png" width="250">
-<!--   <img src="docs/screenshots/home.png" width="250">
-  <img src="docs/screenshots/product_details.png" width="250"> -->
+  <img src="docs/screenshots/welcome.png" alt="Welcome Screen" width="250" style="margin-right:20px;">
+  <img src="docs/screenshots/register.png" alt="Register Screen" width="250" style="margin-right:20px;">
+  <img src="docs/screenshots/dashboard.png" alt="Home Screen" width="250" style="margin-right:20px;">
+  <img src="docs/screenshots/details.png" alt="Product Details Screen" width="250" style="margin-right:20px;">
+  <img src="docs/screenshots/profile.png" alt="Profile Screen" width="250">
 </p>
 
 ---
@@ -27,7 +29,7 @@ It features user authentication (login/register), a custom tab bar, product brow
 ---
 
 ## 🛠 Tech Stack
-- **Language:** Swift 5.9  
+- **Language:** Swift
 - **Frameworks:** SwiftUI, UIKit  
 - **Backend:** Firebase Authentication, Firebase Firestore  
 - **Architecture:** MVVM  
@@ -44,5 +46,4 @@ The project follows the **MVVM** pattern to keep UI, business logic, and data ha
 ## 🚀 Installation
 1. Clone the repository  
    ```bash
-   git clone https://github.com/your-username/Furniture-iOS-SwiftUI.git
-   cd Furniture-iOS-SwiftUI
+   git clone https://github.com/Md-owais-07/Furniture-iOS-SwiftUI.git
