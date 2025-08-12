@@ -8,6 +8,18 @@ It features user authentication (login/register), a custom tab bar, product brow
 
 ## 📹 App Demo
 
+![Image](https://github.com/user-attachments/assets/862a0300-b1e7-44f1-bf66-0aafef7fbaff)
+
+---
+
+## ✨ Features
+- 🔐 **User Authentication** – Login & Register using Firebase Authentication  
+- 🗂 **Custom Tab Bar** – Seamless navigation across sections  
+- 🛒 **Product Browsing** – Browse furniture items with search functionality  
+- 📄 **Product Details** – View detailed product descriptions and pricing  
+- ➕ **Add to Cart** – Manage selected items with real-time updates  
+- 💳 **Dummy Payment Flow** – Simulated checkout process  
+- ☁️ **Firebase Integration** – Backend services for authentication and data storage  
 
 ---
 
@@ -20,17 +32,6 @@ It features user authentication (login/register), a custom tab bar, product brow
   <img src="docs/screenshots/payment.png" alt="Payment Screen" width="250" style="margin-right:20px;">
   <img src="docs/screenshots/profile.png" alt="Profile Screen" width="250">
 </p>
-
----
-
-## ✨ Features
-- 🔐 **User Authentication** – Login & Register using Firebase Authentication  
-- 🗂 **Custom Tab Bar** – Seamless navigation across sections  
-- 🛒 **Product Browsing** – Browse furniture items with search functionality  
-- 📄 **Product Details** – View detailed product descriptions and pricing  
-- ➕ **Add to Cart** – Manage selected items with real-time updates  
-- 💳 **Dummy Payment Flow** – Simulated checkout process  
-- ☁️ **Firebase Integration** – Backend services for authentication and data storage  
 
 ---
 
