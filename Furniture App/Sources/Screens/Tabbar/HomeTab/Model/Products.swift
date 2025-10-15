@@ -48,30 +48,6 @@ let categories: [Category] = [
     Category(name: "Table", image: "light"),
 ]
 
-//var productsDataArray: [Products] = [
-//    Products(productImage: "prd-1", productTitle: "Ox Mathis Chair", productSubTitle: "Hans j. wegner", productPrice: 9.99, productDescription: "The Swedish Designer Monica Forstar’s Style Is Characterised By her Enternal love For New Materials and Beautiful Pure Shapes.", rating: 4.5, quantity: 40, category: "Chair"),
-//    Products(productImage: "prd-2", productTitle: "Comfort Chair", productSubTitle: "Hans j. wegner", productPrice: 9.99, productDescription: "The Swedish Designer Monica Forstar’s Style Is Characterised By her Enternal love For New Materials and Beautiful Pure Shapes.", rating: 4.5, quantity: 40, category: "Chair"),
-//    Products(productImage: "prd-3", productTitle: "Classic Lounge Chair", productSubTitle: "Hans j. wegner", productPrice: 9.99, productDescription: "The Swedish Designer Monica Forstar’s Style Is Characterised By her Enternal love For New Materials and Beautiful Pure Shapes.", rating: 4.5, quantity: 40, category: "Chair"),
-//    Products(productImage: "prd-4", productTitle: "Wooden Armchair", productSubTitle: "Hans j. wegner", productPrice: 9.99, productDescription: "The Swedish Designer Monica Forstar’s Style Is Characterised By her Enternal love For New Materials and Beautiful Pure Shapes.", rating: 4.5, quantity: 40, category: "Chair"),
-//
-//    
-//    Products(productImage: "sf-1", productTitle: "Ox Mathis Chair", productSubTitle: "Hans j. wegner", productPrice: 10.40, productDescription: "The Swedish Designer Monica Forstar’s Style Is Characterised By her Enternal love For New Materials and Beautiful Pure Shapes.", rating: 1, quantity: 0, category: "Sofa"),
-//    Products(productImage: "sf-2", productTitle: "Ox Mathis Chair", productSubTitle: "Hans j. wegner", productPrice: 10.40, productDescription: "The Swedish Designer Monica Forstar’s Style Is Characterised By her Enternal love For New Materials and Beautiful Pure Shapes.", rating: 1, quantity: 0, category: "Sofa"),
-//    Products(productImage: "sf-3", productTitle: "Ox Mathis Chair", productSubTitle: "Hans j. wegner", productPrice: 10.40, productDescription: "The Swedish Designer Monica Forstar’s Style Is Characterised By her Enternal love For New Materials and Beautiful Pure Shapes.", rating: 1, quantity: 0, category: "Sofa"),
-//    Products(productImage: "sf-4", productTitle: "Ox Mathis Chair", productSubTitle: "Hans j. wegner", productPrice: 10.40, productDescription: "The Swedish Designer Monica Forstar’s Style Is Characterised By her Enternal love For New Materials and Beautiful Pure Shapes.", rating: 1, quantity: 0, category: "Sofa"),
-//    
-//    Products(productImage: "bd-1", productTitle: "Fuji Arm Chair", productSubTitle: "Hans j. wegner", productPrice: 19.20, productDescription: "The Swedish Designer Monica Forstar’s Style Is Characterised By her Enternal love For New Materials and Beautiful Pure Shapes.", rating: 2, quantity: 10, category: "Bed"),
-//    Products(productImage: "bd-2", productTitle: "Fuji Arm Chair", productSubTitle: "Hans j. wegner", productPrice: 19.20, productDescription: "The Swedish Designer Monica Forstar’s Style Is Characterised By her Enternal love For New Materials and Beautiful Pure Shapes.", rating: 2, quantity: 10, category: "Bed"),
-//    Products(productImage: "bd-3", productTitle: "Fuji Arm Chair", productSubTitle: "Hans j. wegner", productPrice: 19.20, productDescription: "The Swedish Designer Monica Forstar’s Style Is Characterised By her Enternal love For New Materials and Beautiful Pure Shapes.", rating: 2, quantity: 10, category: "Bed"),
-//    Products(productImage: "bd-4", productTitle: "Fuji Arm Chair", productSubTitle: "Hans j. wegner", productPrice: 19.20, productDescription: "The Swedish Designer Monica Forstar’s Style Is Characterised By her Enternal love For New Materials and Beautiful Pure Shapes.", rating: 2, quantity: 10, category: "Bed"),
-//    
-//    Products(productImage: "tb-1", productTitle: "Fuji Arm Chair", productSubTitle: "Hans j. wegner", productPrice: 17.70, productDescription: "The Swedish Designer Monica Forstar’s Style Is Characterised By her Enternal love For New Materials and Beautiful Pure Shapes.", rating: 3, quantity: 10, category: "Table"),
-//    Products(productImage: "tb-2", productTitle: "Fuji Arm Chair", productSubTitle: "Hans j. wegner", productPrice: 17.70, productDescription: "The Swedish Designer Monica Forstar’s Style Is Characterised By her Enternal love For New Materials and Beautiful Pure Shapes.", rating: 3, quantity: 10, category: "Table"),
-//    Products(productImage: "tb-3", productTitle: "Fuji Arm Chair", productSubTitle: "Hans j. wegner", productPrice: 17.70, productDescription: "The Swedish Designer Monica Forstar’s Style Is Characterised By her Enternal love For New Materials and Beautiful Pure Shapes.", rating: 3, quantity: 10, category: "Table"),
-//    Products(productImage: "tb-4", productTitle: "Fuji Arm Chair", productSubTitle: "Hans j. wegner", productPrice: 17.70, productDescription: "The Swedish Designer Monica Forstar’s Style Is Characterised By her Enternal love For New Materials and Beautiful Pure Shapes.", rating: 3, quantity: 10, category: "Table")
-//]
-
-
 var productsDataArray: [Products] = [
     // 🪑 Chairs
     Products(productImage: "prd-1", productTitle: "Comfort Chair", productSubTitle: "Soft Cushion Back", productPrice: 49.99, productDescription: "A sleek modern chair with plush cushioning designed for comfort and style in any room.", rating: 4.8, quantity: 30, category: "Chair"),

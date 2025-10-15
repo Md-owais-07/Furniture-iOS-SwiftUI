@@ -12,18 +12,7 @@
 				<string>com.googleusercontent.apps.648716967697-fkbtnvr83a0htna3ids3a286i6os0q5m</string>
 			</array>
 		</dict>
-		<dict/>
-		<dict>
-			<key>CFBundleTypeRole</key>
-			<string>Editor</string>
-		</dict>
-		<dict>
-			<key>CFBundleTypeRole</key>
-			<string>Editor</string>
-		</dict>
 	</array>
-	<key>FirebaseAppDelegateProxyEnabled</key>
-	<true/>
 	<key>UIAppFonts</key>
 	<array>
 		<string>Switzer-Bold.otf</string>
@@ -42,5 +31,7 @@
 		<key>Launch screen interface file base name</key>
 		<string>LaunchScreen</string>
 	</dict>
+	<key>FirebaseAppDelegateProxyEnabled</key>
+	<true/>
 </dict>
 </plist>

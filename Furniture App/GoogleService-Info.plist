@@ -2,18 +2,22 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>CLIENT_ID</key>
+	<string>648716967697-fkbtnvr83a0htna3ids3a286i6os0q5m.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.648716967697-fkbtnvr83a0htna3ids3a286i6os0q5m</string>
 	<key>API_KEY</key>
-	<string>AIzaSyBUv65ZeQo-Qy9TpBXZZrkGanI3T_DAbko</string>
+	<string>AIzaSyDsEXAJKs92rOcPrHSUw2Ydlg1onyk_w_k</string>
 	<key>GCM_SENDER_ID</key>
-	<string>638005806882</string>
+	<string>648716967697</string>
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
 	<string>self.Furniture-App</string>
 	<key>PROJECT_ID</key>
-	<string>furniture-app-5fed0</string>
+	<string>furniture-push</string>
 	<key>STORAGE_BUCKET</key>
-	<string>furniture-app-5fed0.firebasestorage.app</string>
+	<string>furniture-push.firebasestorage.app</string>
 	<key>IS_ADS_ENABLED</key>
 	<false></false>
 	<key>IS_ANALYTICS_ENABLED</key>
@@ -25,6 +29,6 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:638005806882:ios:e1823e28afe848a477477b</string>
+	<string>1:648716967697:ios:b64b48e37459f88df676b0</string>
 </dict>
 </plist>

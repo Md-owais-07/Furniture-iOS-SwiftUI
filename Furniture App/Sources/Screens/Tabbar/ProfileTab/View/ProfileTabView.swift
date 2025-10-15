@@ -10,14 +10,14 @@ import FirebaseAuth
 
 struct ProfileTabView: View {
     @StateObject private var viewModel = ProfileViewModel()
+    
     @State private var isPresented: Bool = false
     @State private var path = NavigationPath()
     @State private var isLoggedOut: Bool = false
+    @State private var navigateToNext: Bool = false
     
     @EnvironmentObject var sessionManager: UserSessionManager
     @EnvironmentObject var navManager: AppNavigationManager
-    
-    @State private var navigateToNext: Bool = false
     
     var menuItems: [MenuItem] {
         [
