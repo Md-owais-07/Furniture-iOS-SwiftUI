@@ -136,21 +136,3 @@ struct HomeTabView: View {
         .environmentObject(AppNavigationManager())
         .environmentObject(ProductViewModel())
 }
-
-func uploadProducts() {
-
-    let db = Firestore.firestore()
-
-    for product in productsDataArray {
-
-        db.collection("products").addDocument(data: [
-            "productImage": product.productImage,
-            "productTitle": product.productTitle,
-            "productSubTitle": product.productSubTitle,
-            "productPrice": product.productPrice,
-            "productDescription": product.productDescription,
-            "rating": product.rating,
-            "category": product.category
-        ])
-    }
-}
