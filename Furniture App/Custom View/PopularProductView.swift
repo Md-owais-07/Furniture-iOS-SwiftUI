@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct PopularProductView: View {
-    var products: Products
+    let products: Products
     
     var body: some View {
         ZStack {
@@ -18,8 +18,7 @@ struct PopularProductView: View {
                 Color.white
                 HStack(spacing: 12) {
                     ZStack {
-                        Image(products.productImage)
-                            .resizable()
+                        LoadserverImageView(urlString: products.productImage)
                             .frame(width: 50, height: 50)
                     }
                     .frame(width: 76, height: 76)
@@ -55,5 +54,5 @@ struct PopularProductView: View {
 }
 
 #Preview {
-    PopularProductView(products: productsDataArray[0])
+    PopularProductView(products: .mock)
 }

@@ -6,13 +6,26 @@
 //
 
 import SwiftUI
+import WebKit
 
-struct WebView: View {
-    var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+struct WebView: UIViewRepresentable {
+
+    let url: URL
+
+    func makeUIView(context: Context) -> WKWebView {
+        WKWebView()
+    }
+
+    func updateUIView(
+        _ webView: WKWebView,
+        context: Context
+    ) {
+        webView.load(
+            URLRequest(url: url)
+        )
     }
 }
 
 #Preview {
-    WebView()
+    WebView(url: URL(string: "https://www.codilar.com/privacy-policy/")!)
 }

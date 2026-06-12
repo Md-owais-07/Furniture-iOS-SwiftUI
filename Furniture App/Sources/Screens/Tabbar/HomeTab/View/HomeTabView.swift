@@ -6,11 +6,15 @@
 //
 
 import SwiftUI
+import FirebaseFirestore
 
 struct HomeTabView: View {
     @State private var searchText: String = ""
     
     @EnvironmentObject var sessionManager: UserSessionManager
+    @EnvironmentObject var productVM: ProductViewModel
+    @EnvironmentObject var categoryVM: CategoryViewModel
+    
     @EnvironmentObject var navManager: AppNavigationManager
     
     var body: some View {
@@ -22,6 +26,7 @@ struct HomeTabView: View {
                     //  Header View
                     HStack(spacing: 12) {
                         CircularImageView(imageName: "user")
+                        
                         VStack(alignment: .leading, spacing: 6) {
                             Text("Welcome,")
                                 .font(Font.custom("Switzer-Regular", size: 13))
@@ -80,7 +85,7 @@ struct HomeTabView: View {
                             .padding(.top, 16)
                         
                         //   Ctegory view
-                        CategoryListView(product: productsDataArray[0])
+                        CategoryListView()
                             .padding(.vertical, 24)
                     }
                     
@@ -92,13 +97,6 @@ struct HomeTabView: View {
                         
                         Spacer()
                         
-                        //                        Button {
-                        //                            //
-                        //                        } label: {
-                        //                            Text("View All")
-                        //                                .font(Font.custom("Switzer-Regular", size: 13))
-                        //                                .foregroundStyle(Color.primaryButton)
-                        //                        }
                         NavigationLink {
                             MostCategoryView(title: "Popular")
                         } label: {
@@ -112,32 +110,22 @@ struct HomeTabView: View {
                     
                     ScrollView(.horizontal, showsIndicators: false) {
                         HStack(spacing: -8) {
-                            ForEach(productsDataArray) { product in
-                                //                                PopularProductView(products: product)
+                            ForEach(productVM.products) { product in
                                 NavigationLink {
                                     ProductDetailView(product: product)
                                 } label: {
                                     PopularProductView(products: product)
                                 }
-                                
                             }
                         }
                     }
                     .padding(.bottom, 24)
-                    
-                    //                    ScrollView(.horizontal, showsIndicators: false) {
-                    //                        HStack(spacing: 16) {
-                    //                            ForEach(filteredProducts) { product in
-                    //                                NavigationLink(destination: ProductDetailView(product: product)) {
-                    //                                    ProductCardView(product: product)
-                    //                                }
-                    //                            }
-                    //                        }
-                    //                        .padding(.horizontal, 24)
-                    //                    }
                 }
             }
             .padding(.top, 6)
+        }.task {
+            productVM.fetchProducts()
+            categoryVM.fetchCategories()
         }
     }
 }
@@ -146,4 +134,23 @@ struct HomeTabView: View {
     HomeTabView()
         .environmentObject(UserSessionManager())
         .environmentObject(AppNavigationManager())
+        .environmentObject(ProductViewModel())
+}
+
+func uploadProducts() {
+
+    let db = Firestore.firestore()
+
+    for product in productsDataArray {
+
+        db.collection("products").addDocument(data: [
+            "productImage": product.productImage,
+            "productTitle": product.productTitle,
+            "productSubTitle": product.productSubTitle,
+            "productPrice": product.productPrice,
+            "productDescription": product.productDescription,
+            "rating": product.rating,
+            "category": product.category
+        ])
+    }
 }

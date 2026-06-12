@@ -101,7 +101,7 @@ struct RegisterView: View {
                     
                     CustomButtonView(action: {
                         //
-                    }, title: "Sign Un With Google", isImageVisible: true, imageName: "Google", bgColor: .white, textColor: .textClr)
+                    }, title: "Sign Up With Google", isImageVisible: true, imageName: "Google", bgColor: .white, textColor: .textClr)
                 }
                 .padding(.bottom, 24)
     

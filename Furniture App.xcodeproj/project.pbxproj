@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E92F57252FDC0242008786FF /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = E92F57242FDC0242008786FF /* Kingfisher */; };
+		E92F57322FDC4DFB008786FF /* Shimmer in Frameworks */ = {isa = PBXBuildFile; productRef = E92F57312FDC4DFB008786FF /* Shimmer */; };
 		E96A5AD62E9D75F900EC49CB /* UserNotifications.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E96A5AD52E9D75F900EC49CB /* UserNotifications.framework */; };
 		E96A5AD82E9D79A900EC49CB /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = E96A5AD72E9D79A900EC49CB /* FirebaseAnalytics */; };
 		E96A5ADA2E9D79A900EC49CB /* FirebaseMessaging in Frameworks */ = {isa = PBXBuildFile; productRef = E96A5AD92E9D79A900EC49CB /* FirebaseMessaging */; };
@@ -40,11 +42,13 @@
 				E9A954322D6C564B00B5B85E /* FirebaseCrashlytics in Frameworks */,
 				E9A954302D6C564B00B5B85E /* FirebaseCore in Frameworks */,
 				E96A5AD82E9D79A900EC49CB /* FirebaseAnalytics in Frameworks */,
+				E92F57252FDC0242008786FF /* Kingfisher in Frameworks */,
 				E9A954342D6C564B00B5B85E /* FirebaseDatabase in Frameworks */,
 				E9A954362D6C564B00B5B85E /* FirebaseFirestore in Frameworks */,
 				E9A9542E2D6C564B00B5B85E /* FirebaseAuth in Frameworks */,
 				E9F269A32D9D8D910028D22E /* Lottie in Frameworks */,
 				E96A5AD62E9D75F900EC49CB /* UserNotifications.framework in Frameworks */,
+				E92F57322FDC4DFB008786FF /* Shimmer in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -104,6 +108,8 @@
 				E9F269A22D9D8D910028D22E /* Lottie */,
 				E96A5AD72E9D79A900EC49CB /* FirebaseAnalytics */,
 				E96A5AD92E9D79A900EC49CB /* FirebaseMessaging */,
+				E92F57242FDC0242008786FF /* Kingfisher */,
+				E92F57312FDC4DFB008786FF /* Shimmer */,
 			);
 			productName = "Furniture App";
 			productReference = E95E02AC2D451961001AF7EE /* Furniture App.app */;
@@ -136,6 +142,8 @@
 			packageReferences = (
 				E9A9542C2D6C564B00B5B85E /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 				E9F269A12D9D8D910028D22E /* XCRemoteSwiftPackageReference "lottie-ios" */,
+				E92F57232FDC0242008786FF /* XCRemoteSwiftPackageReference "Kingfisher" */,
+				E92F57302FDC4DFB008786FF /* XCRemoteSwiftPackageReference "SwiftUI-Shimmer" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = E95E02AD2D451961001AF7EE /* Products */;
@@ -293,10 +301,11 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = "Furniture App/Furniture AppDebug.entitlements";
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Furniture App/Preview Content\"";
-				DEVELOPMENT_TEAM = T7H88K2Z8H;
+				DEVELOPMENT_TEAM = T6QURQAWXG;
 				ENABLE_PREVIEWS = YES;
 				FRAMEWORK_SEARCH_PATHS = "";
 				GENERATE_INFOPLIST_FILE = YES;
@@ -317,6 +326,7 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "self.Furniture-App";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
@@ -337,7 +347,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Furniture App/Preview Content\"";
-				DEVELOPMENT_TEAM = T7H88K2Z8H;
+				DEVELOPMENT_TEAM = T6QURQAWXG;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Furniture-App-Info.plist";
@@ -392,6 +402,22 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		E92F57232FDC0242008786FF /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/onevcat/Kingfisher";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 8.9.0;
+			};
+		};
+		E92F57302FDC4DFB008786FF /* XCRemoteSwiftPackageReference "SwiftUI-Shimmer" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/markiv/SwiftUI-Shimmer";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.5.1;
+			};
+		};
 		E9A9542C2D6C564B00B5B85E /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
@@ -411,6 +437,16 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		E92F57242FDC0242008786FF /* Kingfisher */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = E92F57232FDC0242008786FF /* XCRemoteSwiftPackageReference "Kingfisher" */;
+			productName = Kingfisher;
+		};
+		E92F57312FDC4DFB008786FF /* Shimmer */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = E92F57302FDC4DFB008786FF /* XCRemoteSwiftPackageReference "SwiftUI-Shimmer" */;
+			productName = Shimmer;
+		};
 		E96A5AD72E9D79A900EC49CB /* FirebaseAnalytics */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = E9A9542C2D6C564B00B5B85E /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;

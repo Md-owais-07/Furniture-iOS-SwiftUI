@@ -9,8 +9,9 @@ import SwiftUI
 
 struct BottomButtonView: View {
     var price: String = "100"
+    let product: Products
     
-    @State private var quantity: Int = 1
+    @State private var quantity: Int = 0
     
     var body: some View {
         
@@ -18,7 +19,7 @@ struct BottomButtonView: View {
             Spacer()
             VStack(spacing: 0) {
                 HStack(spacing: 10) {
-                    ProductQuantityButton(quantity: $quantity)
+                    ProductQuantityButton(product: product)
                     
                     Spacer()
                     
@@ -41,5 +42,5 @@ struct BottomButtonView: View {
 }
 
 #Preview {
-    BottomButtonView()
+    BottomButtonView(product: .mock)
 }

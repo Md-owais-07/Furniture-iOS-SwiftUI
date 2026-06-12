@@ -1,3 +1,33 @@
-# Ignore Xcode user-specific state files
+# macOS
+.DS_Store
+
+# Xcode - user-specific
 *.xcuserstate
 *.xcuserdatad/
+xcuserdata/
+*.xcscmblueprint
+*.xccheckout
+
+# Xcode - build output
+build/
+DerivedData/
+*.moved-aside
+*.hmap
+*.ipa
+*.dSYM.zip
+*.dSYM
+
+# Swift Package Manager
+.swiftpm/
+.build/
+
+# CocoaPods / Carthage (if added later)
+Pods/
+Carthage/Build/
+
+# Secrets / config — should NOT be committed to source control
+# NOTE: GoogleService-Info.plist is currently tracked. Untrack it with:
+#   git rm --cached "Furniture App/GoogleService-Info.plist"
+GoogleService-Info.plist
+*.entitlements.local
+secrets.plist

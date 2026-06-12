@@ -8,43 +8,43 @@
 import SwiftUI
 
 struct ProductQuantityButton: View {
-    @Binding var quantity: Int
-    
+
+    @EnvironmentObject var cartVM: FinalCartManager
+
+    let product: Products
+
     var body: some View {
-        VStack {
-            HStack(spacing: 8) {
+
+        let quantity = cartVM.quantity(for: product)
+
+        if quantity > 0 {
+
+            HStack {
+
                 Button {
-                    if quantity > 0 {
-                        quantity -= 1
-                    }
+                    cartVM.removeFromCart(product)
                 } label: {
                     Image(systemName: "minus")
-                        .scaledToFit()
-                        .frame(width: 26, height: 26)
-                        .foregroundColor(Color("subTextClr"))
-                        .background(Color("buttonShapeColor"))
-                        .clipShape(Circle())
                 }
-                
+
                 Text("\(quantity)")
-                    .font(Font.custom("Switzer-Regular", size: 14))
-                    .foregroundStyle(Color.textClr)
-                
+
                 Button {
-                    quantity += 1
+                    cartVM.addToCart(product)
                 } label: {
                     Image(systemName: "plus")
-                        .scaledToFit()
-                        .frame(width: 26, height: 26)
-                        .foregroundColor(Color.white)
-                        .background(Color("primaryColor"))
-                        .clipShape(Circle())
                 }
+            }
+
+        } else {
+
+            Button("Add") {
+                cartVM.addToCart(product)
             }
         }
     }
 }
 
 #Preview {
-    ProductQuantityButton(quantity: .constant(1))
+    ProductQuantityButton(product: .mock)
 }

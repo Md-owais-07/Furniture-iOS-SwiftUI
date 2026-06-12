@@ -10,10 +10,10 @@ import SwiftUI
 struct PaymentView: View {
     @State private var promoCode: String = ""
     
-    @State private var cardNumberTF: String = ""
-    @State private var cardHolderNameTF: String = ""
-    @State private var cardExpiryDateTF: String = ""
-    @State private var cardCvvTF: String = ""
+    @State private var cardNumberTF: String = "4562112245957852"
+    @State private var cardHolderNameTF: String = "Neck John"
+    @State private var cardExpiryDateTF: String = "10/30"
+    @State private var cardCvvTF: String = "100"
     @State private var cardValidation: Bool = true
     
     @State private var toast: Toast? = nil
@@ -21,7 +21,7 @@ struct PaymentView: View {
     @State private var isNavigating: Bool = false
     
     @EnvironmentObject var navManager: AppNavigationManager
-    @EnvironmentObject var cartManager: CartManager
+    @EnvironmentObject var cartManager: FinalCartManager
     
     var body: some View {
         ZStack {
@@ -263,7 +263,7 @@ struct PaymentView: View {
                         
                         Spacer()
                         
-                        Text("$\(cartManager.total, specifier: "%.2f")")
+                        Text("$\(cartManager.grandTotalPayment, specifier: "%.2f")")
                             .font(Font.custom("Switzer-Medium", size: 20))
                             .foregroundStyle(Color.primaryButton)
                     }
@@ -315,7 +315,7 @@ struct PaymentView: View {
 
 #Preview {
     PaymentView()
-        .environmentObject(CartManager())
+        .environmentObject(FinalCartManager())
 }
 
 

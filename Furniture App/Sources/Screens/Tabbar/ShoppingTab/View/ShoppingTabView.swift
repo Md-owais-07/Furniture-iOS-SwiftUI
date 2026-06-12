@@ -8,138 +8,153 @@
 import SwiftUI
 
 struct ShoppingTabView: View {
-    @State private var quantity: Int = 0
-    
-    @Environment(\.dismiss) var dismiss
+
     @EnvironmentObject var navManager: AppNavigationManager
-    @EnvironmentObject var cartManager: CartManager
-    
+    @EnvironmentObject var cartManager: FinalCartManager
+
     var body: some View {
+
         ZStack {
-            Color("AppColor").ignoresSafeArea(.all)
-            
+
+            Color("AppColor")
+                .ignoresSafeArea()
+
             VStack(spacing: 0) {
+
                 VStack {
-                    // Top Header View
+
+                    // Header
                     ZStack {
-                        ZStack {
-                            Text("Shopping")
-                                .font(Font.custom("Switzer-Medium", size: 20))
-                                .foregroundStyle(Color.textClr)
-                        }
-                        
+
+                        Text("Shopping")
+                            .font(Font.custom("Switzer-Medium", size: 20))
+                            .foregroundStyle(Color.textClr)
+
                         HStack {
+
                             Spacer()
-                            
+
                             TopCircularButtonView(action: {
-                                
+                                cartManager.clearCart()
                             }, imageName: "bin")
                         }
                     }
-                    
+
                     Spacer()
-                    
+
                     ScrollView(.vertical, showsIndicators: false) {
+
                         VStack(spacing: 24) {
+
                             ForEach(cartManager.items) { item in
-                                AddToCartView(image: item.productImage, title: item.productTitle, subtitle: item.productSubTitle, price: item.productPrice)
+
+                                AddToCartView(item: item)
+
                             }
                         }
                         .padding(.vertical, 24)
                     }
                 }
                 .padding(.horizontal, 24)
-                
+
                 if !cartManager.items.isEmpty {
+
                     VStack(spacing: 0) {
+
                         VStack(spacing: 0) {
-                            VStack {
-                                Text("Order Summary")
-                                    .font(Font.custom("Switzer-Medium", size: 16))
-                                    .foregroundStyle(Color.textClr)
-                                    .frame(maxWidth: .infinity, maxHeight: 24, alignment: .leading)
-                                    .padding(.bottom, 16)
-                            }
-                            .frame(height: 40)
-                            
+
+                            Text("Order Summary")
+                                .font(Font.custom("Switzer-Medium", size: 16))
+                                .foregroundStyle(Color.textClr)
+                                .frame(maxWidth: .infinity, alignment: .leading)
+                                .padding(.bottom, 16)
+
                             VStack(spacing: 8) {
+
                                 HStack {
+
                                     Text("Subtotal")
                                         .font(Font.custom("Switzer-Regular", size: 16))
                                         .foregroundStyle(Color.subTextClr)
-                                    
+
                                     Spacer()
-                                    
+
                                     Text("$\(cartManager.totalPrice, specifier: "%.2f")")
                                         .font(Font.custom("Switzer-Regular", size: 16))
                                         .foregroundStyle(Color.primaryButton)
                                 }
-                                .frame(height: 24)
-                                
+
                                 HStack {
+
                                     Text("Shipping Cost")
                                         .font(Font.custom("Switzer-Regular", size: 16))
                                         .foregroundStyle(Color.subTextClr)
-                                    
+
                                     Spacer()
-                                    
+
                                     Text("$\(cartManager.shippingCharge, specifier: "%.2f")")
                                         .font(Font.custom("Switzer-Regular", size: 16))
                                         .foregroundStyle(Color.primaryButton)
                                 }
-                                .frame(height: 24)
                             }
-                            .frame(maxWidth: .infinity, maxHeight: 64, alignment: .leading)
-                            
+
+                            Rectangle()
+                                .frame(height: 1)
+                                .foregroundStyle(Color("buttonShapeColor"))
+                                .padding(.top, 8)
+
                             HStack {
-                                Rectangle()
-                                    .frame(maxWidth: .infinity, maxHeight: 1)
-                                    .foregroundStyle(Color("buttonShapeColor"))
-                            }
-                            .padding(.top, 8)
-                            
-                            
-                            HStack {
+
                                 Text("Total Payment")
                                     .font(Font.custom("Switzer-Semibold", size: 16))
                                     .foregroundStyle(Color.textClr)
-                                
+
                                 Spacer()
-                                
-                                Text("$\(cartManager.total, specifier: "%.2f")")
+
+                                Text("$\(cartManager.totalPayment, specifier: "%.2f")")
                                     .font(Font.custom("Switzer-Semibold", size: 16))
                                     .foregroundStyle(Color.primaryButton)
                             }
                             .padding(.top, 20)
-                            .frame(maxWidth: .infinity, maxHeight: 24, alignment: .leading)
-                            
                         }
-                        .padding([.horizontal, .vertical], 24)
-                        
+                        .padding(24)
+
                         Spacer()
-                        
-                        CustomButtonView(action: {
-                            navManager.push(.shoppingTab(.checkout))
-                        }, title: "Check Out")
+
+                        CustomButtonView(
+                            action: {
+                                navManager.push(.shoppingTab(.checkout))
+                            },
+                            title: "Check Out"
+                        )
                         .padding(.horizontal, 24)
                         .padding(.bottom, 14)
                     }
                     .frame(maxWidth: .infinity, maxHeight: 268)
                     .background(.white)
-                    .clipShape(RoundedCorner(radius: 24, corners: [.topLeft, .topRight]))
+                    .clipShape(
+                        RoundedCorner(
+                            radius: 24,
+                            corners: [.topLeft, .topRight]
+                        )
+                    )
                 }
             }
-            
-            ZStack {
+
+            if cartManager.items.isEmpty {
+
                 VStack(spacing: -10) {
-                    if cartManager.items.isEmpty {
-                        LottieView(animationName: "cart2", play: true, loopMode: .loop)
-                            .frame(width: 180, height: 180)
-                        
-                        Text("Your cart is empty")
-                            .font(Font.custom("Switzer-Regular", size: 16))
-                            .foregroundStyle(Color.subTextClr)
-                    }
+
+                    LottieView(
+                        animationName: "cart2",
+                        play: true,
+                        loopMode: .loop
+                    )
+                    .frame(width: 180, height: 180)
+
+                    Text("Your cart is empty")
+                        .font(Font.custom("Switzer-Regular", size: 16))
+                        .foregroundStyle(Color.subTextClr)
                 }
             }
         }
@@ -148,5 +163,5 @@ struct ShoppingTabView: View {
 
 #Preview {
     ShoppingTabView()
-        .environmentObject(CartManager())
+        .environmentObject(FinalCartManager())
 }

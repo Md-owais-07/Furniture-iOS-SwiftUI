@@ -9,7 +9,7 @@ import SwiftUI
 
 struct CheckoutView: View {
     @EnvironmentObject var navManager: AppNavigationManager
-    @EnvironmentObject var cartManager: CartManager
+    @EnvironmentObject var cartManager: FinalCartManager
     
     @State private var isEdit: Bool = false
     
@@ -124,7 +124,7 @@ struct CheckoutView: View {
                                 
                                 Spacer()
                                 
-                                Text("$\(cartManager.totalPrice, specifier: "%.2f")")
+                                Text("$\(cartManager.totalPayment, specifier: "%.2f")")
                                     .font(Font.custom("Switzer-Regular", size: 16))
                                     .foregroundStyle(Color.primaryButton)
                             }
@@ -137,7 +137,7 @@ struct CheckoutView: View {
                                 
                                 Spacer()
                                 
-                                Text("$\(cartManager.shippingCharge, specifier: "%.2f")")
+                                Text("$\(cartManager.deliveryFees, specifier: "%.2f")")
                                     .font(Font.custom("Switzer-Regular", size: 16))
                                     .foregroundStyle(Color.primaryButton)
                             }
@@ -160,7 +160,7 @@ struct CheckoutView: View {
                             
                             Spacer()
                             
-                            Text("$\(cartManager.total, specifier: "%.2f")")
+                            Text("$\(cartManager.grandTotalPayment, specifier: "%.2f")")
                                 .font(Font.custom("Switzer-Semibold", size: 16))
                                 .foregroundStyle(Color.primaryButton)
                         }
@@ -193,5 +193,5 @@ struct CheckoutView: View {
 
 #Preview {
     CheckoutView()
-        .environmentObject(CartManager())
+        .environmentObject(FinalCartManager())
 }

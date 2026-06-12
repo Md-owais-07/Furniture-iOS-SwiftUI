@@ -109,7 +109,7 @@ struct CustomTabBarView: View {
     CustomTabBarView()
         .environmentObject(AppNavigationManager())
         .environmentObject(UserSessionManager())
-        .environmentObject(CartManager())
+        .environmentObject(FinalCartManager())
 }
 
 

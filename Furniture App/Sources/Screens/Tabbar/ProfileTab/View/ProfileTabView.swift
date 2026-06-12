@@ -25,10 +25,10 @@ struct ProfileTabView: View {
                 
             },
             MenuItem(title: "Payment Methods", imageName: "payment") { print("Payment Methods tapped") },
-            MenuItem(title: "Order History", imageName: "order") { print("Order History tapped") },
+            MenuItem(title: "Order History", imageName: "order") { navManager.push(.profileTab(.orderHistory)) },
             MenuItem(title: "Delivery History", imageName: "delivery") { print("Delivery History tapped") },
             MenuItem(title: "Support Center", imageName: "support") { print("Support Center tapped") },
-            MenuItem(title: "Legal Policy", imageName: "legal") { print("Legal Policy tapped") }
+            MenuItem(title: "Legal Policy", imageName: "legal") { navManager.push(.profileTab(.policy)) }
         ]
     }
     

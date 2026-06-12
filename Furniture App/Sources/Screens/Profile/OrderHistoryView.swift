@@ -8,8 +8,26 @@
 import SwiftUI
 
 struct OrderHistoryView: View {
+    @EnvironmentObject var orderManager: OrderManager
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        ZStack {
+            if orderManager.orders.isEmpty {
+                Text("No order placed")
+            }
+            ScrollView {
+                LazyVStack {
+                    ForEach(orderManager.orders) { order in
+                        OrderRowView(order: order)
+                    }
+                }
+            }
+            .navigationTitle("Order History")
+            .navigationBarTitleDisplayMode(.inline)
+        }.task {
+            
+            orderManager.fetchOrders()
+        }
     }
 }
 

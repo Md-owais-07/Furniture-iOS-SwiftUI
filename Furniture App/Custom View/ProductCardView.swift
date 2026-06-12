@@ -8,81 +8,91 @@
 import SwiftUI
 
 struct ProductCardView: View {
-    var product: Products
-    
-    @EnvironmentObject var cartManager: CartManager
-    @State private var isAddedToCart: Bool = false
-    @State private var quantity: Int = 0
-    
+
+    let product: Products
+
+    @EnvironmentObject var cartManager: FinalCartManager
+
+    var cartQuantity: Int {
+        cartManager.quantity(for: product)
+    }
+
     var body: some View {
+
         ZStack {
+
             Color.white
-            ZStack {
-                Color.white
-                VStack {
-                    Image(product.productImage)
-                        .resizable()
-                        .scaledToFill()
-                        .frame(maxWidth: 85, maxHeight: 110)
-                        .padding(.bottom, 20)
-                    
-                    HStack(spacing: 0) {
-                        VStack(alignment: .leading, spacing: 4) {
-                            Text(product.productTitle)
-                                .font(Font.custom("Switzer-Semibold", size: 16))
-                                .foregroundStyle(.textClr)
-                            
-                            Text(product.productSubTitle)
-                                .font(Font.custom("Switzer-Regular", size: 13))
-                                .foregroundStyle(.subTextClr)
-                        }
-                        
-                    }.frame(maxWidth: .infinity, alignment: .leading)
-                    
+
+            VStack {
+                LoadserverImageView(urlString: product.productImage)
+                    .frame(maxWidth: 85, maxHeight: 110)
+//                Image(product.productImage)
+//                    .resizable()
+//                    .scaledToFill()
+//                    .frame(maxWidth: 85, maxHeight: 110)
+//                    .padding(.bottom, 20)
+
+                HStack {
+
+                    VStack(alignment: .leading, spacing: 4) {
+
+                        Text(product.productTitle)
+                            .font(Font.custom("Switzer-Semibold", size: 16))
+                            .foregroundStyle(.textClr)
+
+                        Text(product.productSubTitle)
+                            .font(Font.custom("Switzer-Regular", size: 13))
+                            .foregroundStyle(.subTextClr)
+                    }
+
                     Spacer()
-                    
-                    HStack(spacing: 0) {
-                        Text(product.productPrice.formatted(.currency(code: "USD")))
-                            .font(Font.custom("Switzer-Medium", size: 16))
-                            .foregroundStyle(.primaryButton)
-                            .frame(height: 32)
-                        
-                        Spacer()
-                        
+                }
+
+                Spacer()
+
+                HStack {
+
+                    Text(
+                        product.productPrice.formatted(
+                            .currency(code: "USD")
+                        )
+                    )
+                    .font(Font.custom("Switzer-Medium", size: 16))
+                    .foregroundStyle(.primaryButton)
+
+                    Spacer()
+
+                    if cartQuantity > 0 {
+
+                        ProductQuantityButton(
+                            product: product
+                        )
+
+                    } else {
+
                         Button {
-                            if quantity == 0 {
-                                isAddedToCart = true
-                                quantity += 1
-                                cartManager.addToCart(product)
-                            } else {
-                                quantity -= 1
-                                isAddedToCart = false
-                                cartManager.removeFromCart(product)
-                            }
+
+                            cartManager.addToCart(product)
+
                         } label: {
-                            if quantity > 0 {
-                                ProductQuantityButton(quantity: $quantity)
-                            } else {
-                                Image("addToCart")
-                                    .scaledToFit()
-                                    .frame(width: 32, height: 32)
-                                    .background(Color("primaryColor"))
-                                    .clipShape(Circle())
-                            }
+
+                            Image("addToCart")
+                                .scaledToFit()
+                                .frame(width: 32, height: 32)
+                                .background(Color("primaryColor"))
+                                .clipShape(Circle())
                         }
                     }
-                    .frame(maxWidth: .infinity, alignment: .leading)
                 }
             }
-            .padding([.horizontal, .vertical], 16)
+            .padding(16)
         }
         .frame(width: 190, height: 250)
         .cornerRadius(14)
-//        .padding(.leading, 24)
     }
 }
 
 #Preview {
-    ProductCardView(product: productsDataArray[0])
-        .environmentObject(CartManager())
+    ProductCardView(product: .mock)
+        .environmentObject(FinalCartManager())
 }

@@ -9,12 +9,15 @@ import SwiftUI
 
 struct VerifyOtpView: View {
     @EnvironmentObject var navManager: AppNavigationManager
+    @EnvironmentObject var cartManager: FinalCartManager
+    @EnvironmentObject var orderManager: OrderManager
+    
     @Environment(\.dismiss) var dismiss
     
-    @State private var otp1: String = ""
-    @State private var otp2: String = ""
-    @State private var otp3: String = ""
-    @State private var otp4: String = ""
+    @State private var otp1: String = "3"
+    @State private var otp2: String = "4"
+    @State private var otp3: String = "5"
+    @State private var otp4: String = "6"
     @State private var isPresent: Bool = false
     
     @State private var isLoading: Bool = false
@@ -72,8 +75,15 @@ struct VerifyOtpView: View {
                             
                             DispatchQueue.main.asyncAfter(deadline: .now() + 1.2) {
                                 isLoading1 = false
-                                isPresent = true
                                 
+                                orderManager.placeOrder(
+                                    items: cartManager.items,
+                                    totalAmount: cartManager.grandTotalPayment
+                                )
+                                
+                                cartManager.clearCart()
+                                
+                                isPresent = true
                             }
                             
                         }

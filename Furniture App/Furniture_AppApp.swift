@@ -10,7 +10,7 @@ import FirebaseCore
 import FirebaseMessaging
 
 class AppDelegate: UIResponder, UIApplicationDelegate {
-    let gcmMessageIDKey = "gcm.Message_ID "
+    let gcmMessageIDKey = "gcm.message_id"
     private var pendingFCMTokenRequest = false
     private var fcmTokenRetrievalAttempts = 0
     private let maxFCMTokenAttempts = 5
@@ -152,7 +152,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 struct Furniture_AppApp: App {
     @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
     @StateObject var sessionManager = UserSessionManager()
-    @StateObject var cartManager = CartManager()
+    @StateObject private var cartVM = FinalCartManager()
+    @StateObject private var orderManager = OrderManager()
+    @StateObject private var productVM = ProductViewModel()
+    @StateObject private var categoryVM = CategoryViewModel()
     @StateObject var navManager = AppNavigationManager()
     
     var body: some Scene {
@@ -160,7 +163,10 @@ struct Furniture_AppApp: App {
             AppState()
                 .environmentObject(navManager)
                 .environmentObject(sessionManager)
-                .environmentObject(cartManager)
+                .environmentObject(orderManager)
+                .environmentObject(cartVM)
+                .environmentObject(categoryVM)
+                .environmentObject(productVM)
         }
     }
 }
@@ -181,8 +187,7 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
         // Print full message.
         print(userInfo)
         
-        // Change this to your preferred presentation option
-        return [[.alert, .sound]]
+        return [[.alert, .sound, .badge]]
     }
     
     func userNotificationCenter(_ center: UNUserNotificationCenter,

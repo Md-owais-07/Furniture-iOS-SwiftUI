@@ -33,10 +33,6 @@
 		<string>Switzer-Regular.otf</string>
 		<string>Switzer-Semibold.otf</string>
 	</array>
-	<key>UIBackgroundModes</key>
-	<array>
-		<string>remote-notification</string>
-	</array>
 	<key>UILaunchScreen</key>
 	<dict>
 		<key>Launch screen interface file base name</key>

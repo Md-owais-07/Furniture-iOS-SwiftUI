@@ -42,26 +42,26 @@ struct LoginView: View {
                 
                 
                 HStack(spacing: 8) {
-                    Button {
-                        //
-                    } label: {
-                        Image("rect")
-                            .resizable()
-                            .frame(width: 16, height: 16)
-                    }
-                    
-                    Text("Remember For 30 Days")
-                        .font(.system(size: 14, weight: .regular, design: .default))
-                        .foregroundStyle(Color("subTextClr"))
+//                    Button {
+//                        //
+//                    } label: {
+//                        Image("rect")
+//                            .resizable()
+//                            .frame(width: 16, height: 16)
+//                    }
+//                    
+//                    Text("Remember For 30 Days")
+//                        .font(.system(size: 14, weight: .regular, design: .default))
+//                        .foregroundStyle(Color("subTextClr"))
                     
                     Spacer()
                     
                     Button {
                         //
                     } label: {
-                        Text("Forgot Password")
+                        Text("Forgot password")
                             .font(.system(size: 14, weight: .regular, design: .default))
-                            .foregroundStyle(.textClr)
+                            .foregroundStyle(.textClr.opacity(0.8))
                     }
                     
                 }

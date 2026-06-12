@@ -8,11 +8,13 @@
 import SwiftUI
 
 struct ProductDetailView: View {
-    var product: Products
+    let product: Products
+    
     @State private var quantity: Int = 0
     @State private var price: Int = 0
     
     @EnvironmentObject var navManager: AppNavigationManager
+    @EnvironmentObject var productVM: ProductViewModel
     @Environment(\.dismiss) var dismiss
     
     var body: some View {
@@ -38,8 +40,7 @@ struct ProductDetailView: View {
                     VStack {
                         VStack {
                             ZStack {
-                                Image(product.productImage)
-                                    .resizable()
+                                LoadserverImageView(urlString: product.productImage)
                                     .scaledToFit()
                                     .frame(width: 205, height: 210)
                                     .padding(.bottom, 26)
@@ -128,7 +129,7 @@ struct ProductDetailView: View {
                 }
                 
                 VStack {
-                    BottomButtonView(price: product.productPrice.formatted(.currency(code: "USD")))
+                    BottomButtonView(price: product.productPrice.formatted(.currency(code: "USD")), product: product)
                 }.frame(maxWidth: .infinity, maxHeight: 120)
             }
         }
@@ -139,5 +140,5 @@ struct ProductDetailView: View {
 }
 
 #Preview {
-    ProductDetailView(product: productsDataArray[1])
+    ProductDetailView(product: .mock)
 }

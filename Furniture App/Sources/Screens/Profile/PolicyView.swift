@@ -9,7 +9,13 @@ import SwiftUI
 
 struct PolicyView: View {
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        WebView(
+            url: URL(
+                string: "https://www.codilar.com/privacy-policy/"
+            )!
+        )
+        .navigationTitle("Privacy Policy")
+        .navigationBarTitleDisplayMode(.inline)
     }
 }
 

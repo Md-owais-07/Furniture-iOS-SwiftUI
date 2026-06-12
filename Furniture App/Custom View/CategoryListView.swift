@@ -6,21 +6,21 @@
 //
 
 import SwiftUI
+import Shimmer
 
 struct CategoryListView: View {
     @State private var selectedCategory: String = "Chair"
     
-    var product: Products
+    @EnvironmentObject var productVM: ProductViewModel
+    @EnvironmentObject var categoryVM: CategoryViewModel
     
-    @EnvironmentObject var cartManager: CartManager
     @EnvironmentObject var navManager: AppNavigationManager
     
     @State private var isAddedToCart: Bool = false
     @State private var quantity: Int = 0
-    @ObservedObject var manager = CartManager()
     
     var filteredProducts: [Products] {
-        productsDataArray.filter { $0.category == selectedCategory }
+        productVM.products.filter { $0.category == selectedCategory }
     }
     
     var body: some View {
@@ -28,7 +28,7 @@ struct CategoryListView: View {
             // **Category Selector**
             ScrollView(.horizontal, showsIndicators: false) {
                 HStack(spacing: 12) {
-                    ForEach(categories) { category in
+                    ForEach(categoryVM.categories) { category in
                         Button {
                             withAnimation {
                                 selectedCategory = category.name
@@ -75,18 +75,53 @@ struct CategoryListView: View {
             
             ScrollView(.horizontal, showsIndicators: false) {
                 HStack(spacing: 16) {
-                    ForEach(filteredProducts) { product in
-                        NavigationLink(destination: ProductDetailView(product: product)) {
-                            ProductCardView(product: product)
+                    if productVM.isLoading {
+
+                        ForEach(0..<3, id: \.self) { _ in
+                            ProductCardSkeletonView()
+                                .shimmering()
+                        }
+
+                    } else {
+
+                        ForEach(filteredProducts) { product in
+
+                            NavigationLink(destination: ProductDetailView(product: product)) {
+                                ProductCardView(product: product)
+                            }
                         }
                     }
+                    
+//                    ForEach(filteredProducts) { product in
+//                        NavigationLink(destination: ProductDetailView(product: product)) {
+//                            ProductCardView(product: product)
+//                        }
+//                    }
+                    
                 }
                 .padding(.horizontal, 24)
             }
-        }.background(Color("AppColor").ignoresSafeArea(.all))
+        }
+        .background(Color("AppColor").ignoresSafeArea(.all))
+        .onAppear {
+
+            if selectedCategory.isEmpty,
+               let firstCategory = categoryVM.categories.first {
+
+                selectedCategory = firstCategory.name
+            }
+        }
+        .onChange(of: categoryVM.categories.count) { _ in
+
+            if selectedCategory.isEmpty,
+               let firstCategory = categoryVM.categories.first {
+
+                selectedCategory = firstCategory.name
+            }
+        }
     }
 }
 
 #Preview {
-    CategoryListView(product: productsDataArray[0])
+    CategoryListView()
 }

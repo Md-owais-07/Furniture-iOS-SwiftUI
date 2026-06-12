@@ -10,6 +10,7 @@ import SwiftUI
 struct SearchBarActionView: View {
     @State private var searchText: String = ""
     @State private var searchResults: [Products] = []
+    @EnvironmentObject var productVM: ProductViewModel
     
     @Environment(\.dismiss) var dismiss
 
@@ -45,7 +46,7 @@ struct SearchBarActionView: View {
                                 if newValue.isEmpty {
                                     searchResults = []
                                 } else {
-                                    searchResults = productsDataArray.filter {
+                                    searchResults = productVM.products.filter {
                                         $0.productTitle.lowercased().contains(newValue.lowercased())
                                     }
                                 }
@@ -86,53 +87,6 @@ struct SearchBarActionView: View {
         }
     }
 }
-
-
-//struct SearchBarActionView: View {
-//    @State private var searchText: String = ""
-//    @State private var searchResults: [Products] = []
-//    
-//    var body: some View {
-//        VStack {
-//            HStack {
-//                TextField("Search Furniture", text: $searchText)
-//                    .font(Font.custom("Switzer-Regular", size: 16))
-//                    .foregroundStyle(.subTextClr)
-//                
-//                Spacer()
-//                
-//                Button {
-//                    searchResults = productsDataArray.filter {
-//                        $0.productTitle.lowercased().contains(searchText.lowercased())
-//                    }
-//                } label: {
-//                    Text("Go")
-//                        .foregroundStyle(Color.black)
-//                }
-//
-//            }
-//            
-//            if searchResults.isEmpty {
-//                Text("No results found")
-//                    .foregroundStyle(.gray)
-//                    .padding(.top, 16)
-//            } else {
-//                ScrollView {
-//                    LazyVStack(spacing: 12) {
-//                        ForEach(searchResults) { product in
-//                            ProductSearchResultView(product: product)
-//                        }
-//                    }
-//                    .padding(.top, 20)
-//                }
-//            }
-//            
-//            Spacer()
-//        }
-//        .padding(.top, 50)
-//        .padding(.horizontal, 24)
-//    }
-//}
 
 #Preview {
     SearchBarActionView()
