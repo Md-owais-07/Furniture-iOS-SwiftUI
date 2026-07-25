@@ -36,7 +36,6 @@ struct OrderRowView: View {
                         .frame(width: 60, height: 60)
 
                     VStack(alignment: .leading, spacing: 4) {
-
                         Text(item.product.productTitle)
                             .font(.headline)
 

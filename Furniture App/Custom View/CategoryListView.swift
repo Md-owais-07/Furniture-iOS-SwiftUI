@@ -9,7 +9,7 @@ import SwiftUI
 import Shimmer
 
 struct CategoryListView: View {
-    @State private var selectedCategory: String = "Chair"
+    @State private var selectedCategory: String = "Bed"
     
     @EnvironmentObject var productVM: ProductViewModel
     @EnvironmentObject var categoryVM: CategoryViewModel

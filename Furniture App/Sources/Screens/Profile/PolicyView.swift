@@ -9,11 +9,9 @@ import SwiftUI
 
 struct PolicyView: View {
     var body: some View {
-        WebView(
-            url: URL(
-                string: "https://www.codilar.com/privacy-policy/"
-            )!
-        )
+        VStack{
+            
+        }
         .navigationTitle("Privacy Policy")
         .navigationBarTitleDisplayMode(.inline)
     }
