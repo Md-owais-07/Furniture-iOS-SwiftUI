@@ -52,7 +52,35 @@ The project follows the **MVVM** pattern to keep UI, business logic, and data ha
 
 ---
 
-## 🚀 Installation
-1. Clone the repository  
-   ```bash
-   git clone https://github.com/Md-owais-07/Furniture-iOS-SwiftUI.git
+# 🚀 Getting Started
+
+### Clone the repository
+
+bash
+https://github.com/Md-owais-07/Furniture-iOS-SwiftUI.git
+
+
+### Open the project
+
+Open the project using the latest version of **Xcode**.
+
+### Build & Run
+
+Run the app.
+
+---
+
+# 👨‍💻 Author
+
+**Mohammad Owais**
+
+- GitHub: https://github.com/Md-owais-07
+- LinkedIn: https://www.linkedin.com/in/mdowais1/
+
+---
+
+# 📄 License
+
+This project is licensed under the MIT License.
+
+---
