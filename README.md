@@ -26,14 +26,14 @@ It features user authentication (login/register), a custom tab bar, product brow
 ---
 
 ## 📸 Screenshots
-<p align="center">
-  <img src="docs/screenshots/welcome.png" alt="Welcome Screen" width="250" style="margin-right:20px;">
-  <img src="docs/screenshots/register.png" alt="Register Screen" width="250" style="margin-right:20px;">
-  <img src="docs/screenshots/dashboard.png" alt="Home Screen" width="250" style="margin-right:20px;">
-  <img src="docs/screenshots/details.png" alt="Product Details Screen" width="250" style="margin-right:20px;">
-  <img src="docs/screenshots/payment.png" alt="Payment Screen" width="250" style="margin-right:20px;">
-  <img src="docs/screenshots/profile.png" alt="Profile Screen" width="250">
-</p>
+
+| Onboarding | Register | Home |
+| :-----: | :------: | :---: |
+| <img src="docs/screenshots/welcome.png" width="250"> | <img src="docs/screenshots/register.png" width="250"> | <img src="docs/screenshots/dashboard.png" width="250"> |
+
+| Details | Payment | Profile |
+| :----: | :-----: | :-----: |
+| <img src="docs/screenshots/details.png" width="250"> | <img src="docs/screenshots/payment.png" width="250"> | <img src="docs/screenshots/profile.png" width="250"> |
 
 ---
 
