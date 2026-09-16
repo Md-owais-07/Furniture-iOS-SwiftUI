@@ -14,32 +14,35 @@ struct ProductQuantityButton: View {
     let product: Products
 
     var body: some View {
-
         let quantity = cartVM.quantity(for: product)
-
+        
         if quantity > 0 {
-
             HStack {
-
                 Button {
                     cartVM.removeFromCart(product)
                 } label: {
                     Image(systemName: "minus")
+                        .font(.system(size: 15, weight: .medium))
+                        .foregroundStyle(Color("subTextClr"))
+                        .frame(width: 26, height: 26)
+                        .background(Color("buttonShapeColor"))
+                        .clipShape(Circle())
                 }
-
+                
                 Text("\(quantity)")
-
+                    .font(.system(size: 15, weight: .medium))
+                    .foregroundStyle(.black)
+                
                 Button {
                     cartVM.addToCart(product)
                 } label: {
                     Image(systemName: "plus")
+                        .font(.system(size: 15, weight: .medium))
+                        .foregroundStyle(.white)
+                        .frame(width: 26, height: 26)
+                        .background(Color("primaryColor"))
+                        .clipShape(Circle())
                 }
-            }
-
-        } else {
-
-            Button("Add") {
-                cartVM.addToCart(product)
             }
         }
     }
@@ -47,4 +50,5 @@ struct ProductQuantityButton: View {
 
 #Preview {
     ProductQuantityButton(product: .mock)
+        .environmentObject(FinalCartManager())
 }

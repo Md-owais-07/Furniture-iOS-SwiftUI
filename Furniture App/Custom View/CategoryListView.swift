@@ -76,49 +76,34 @@ struct CategoryListView: View {
             ScrollView(.horizontal, showsIndicators: false) {
                 HStack(spacing: 16) {
                     if productVM.isLoading {
-
                         ForEach(0..<3, id: \.self) { _ in
                             ProductCardSkeletonView()
                                 .shimmering()
                         }
-
                     } else {
-
                         ForEach(filteredProducts) { product in
-
                             NavigationLink(destination: ProductDetailView(product: product)) {
                                 ProductCardView(product: product)
                             }
                         }
                     }
-                    
-//                    ForEach(filteredProducts) { product in
-//                        NavigationLink(destination: ProductDetailView(product: product)) {
-//                            ProductCardView(product: product)
-//                        }
-//                    }
-                    
                 }
                 .padding(.horizontal, 24)
             }
         }
         .background(Color("AppColor").ignoresSafeArea(.all))
         .onAppear {
-
             if selectedCategory.isEmpty,
                let firstCategory = categoryVM.categories.first {
-
                 selectedCategory = firstCategory.name
             }
         }
-        .onChange(of: categoryVM.categories.count) { _ in
-
+        .onChange(of: categoryVM.categories.count, { _, _ in
             if selectedCategory.isEmpty,
                let firstCategory = categoryVM.categories.first {
-
                 selectedCategory = firstCategory.name
             }
-        }
+        })
     }
 }
 

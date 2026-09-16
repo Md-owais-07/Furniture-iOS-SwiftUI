@@ -37,50 +37,9 @@ struct ToastView: View {
         .cornerRadius(8)
         .overlay(
             RoundedRectangle(cornerRadius: 8)
-            //.stroke(style.themeColor, lineWidth: 0.5)
                 .stroke(style.themeColor, lineWidth: 1)
                 .opacity(0.6)
-            //.glow(color: style.themeColor, radius: 4)
         )
         .padding(.horizontal, 16)
-    }
-}
-
-struct FancyToastView_Previews: PreviewProvider {
-    static var previews: some View {
-        VStack(spacing: 32) {
-            ToastView(
-                style: .success,
-                message: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. ") {}
-            ToastView(
-                style: .info,
-                message: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. ") {}
-            ToastView(
-                style: .warning,
-                message: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. ") {}
-            ToastView(
-                style: .error,
-                message: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. ") {}
-        }
-    }
-}
-
-struct FancyToastViewDark_Previews: PreviewProvider {
-    static var previews: some View {
-        VStack(spacing: 32) {
-            ToastView(
-                style: .success,
-                message: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. ") {}
-            ToastView(
-                style: .info,
-                message: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. ") {}
-            ToastView(
-                style: .warning,
-                message: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. ") {}
-            ToastView(
-                style: .error,
-                message: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. ") {}
-        }
-        .preferredColorScheme(.dark)
     }
 }

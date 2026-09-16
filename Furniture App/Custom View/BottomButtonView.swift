@@ -11,11 +11,11 @@ struct BottomButtonView: View {
     var price: String = "100"
     let product: Products
     
-    @State private var quantity: Int = 0
+    @EnvironmentObject var cartManager: FinalCartManager
     
     var body: some View {
         
-        VStack() {
+        VStack {
             Spacer()
             VStack(spacing: 0) {
                 HStack(spacing: 10) {
@@ -29,7 +29,7 @@ struct BottomButtonView: View {
                 .padding(.bottom, 24)
                 
                 CustomButtonView(action: {
-                    //
+                    cartManager.addToCart(product)
                 }, title: "Add To Cart", isImageVisible: true, imageName: "adt", bgColor: Color("primaryColor"), textColor: .white)
             }
             .padding(.horizontal, 24)
@@ -43,4 +43,5 @@ struct BottomButtonView: View {
 
 #Preview {
     BottomButtonView(product: .mock)
+        .environmentObject(FinalCartManager())
 }

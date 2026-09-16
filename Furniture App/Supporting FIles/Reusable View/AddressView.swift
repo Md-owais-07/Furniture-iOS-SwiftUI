@@ -8,34 +8,34 @@
 import SwiftUI
 
 struct AddressView: View {
-    var action: () -> Void
-    var image: String = ""
-    var title: String = ""
-    var phoneNumber: String = ""
-    var address: String = ""
+    
+    let data: AddressModel
+    let isSelected: Bool
     
     @Binding var isEdit: Bool
     
+    let action: () -> Void
+    
     var body: some View {
-        VStack(spacing: 12) {
+        Button(action: action) {
             HStack {
                 VStack {
                     HStack(spacing: 16) {
                         HStack {
-                            Image(image)
+                            Image(isSelected ? "check" : "uncheck")
                                 .resizable()
                                 .scaledToFit()
                                 .frame(width: 25, height: 25)
                         }
                         
                         VStack(alignment: .leading, spacing: 4) {
-                            Text(title)
+                            Text(data.title)
                                 .font(Font.custom("Switzer-Medium", size: 16))
                                 .foregroundStyle(Color.textClr)
-                            Text(phoneNumber)
+                            Text(data.number)
                                 .font(Font.custom("Switzer-Regular", size: 13))
                                 .foregroundStyle(Color.subTextClr)
-                            Text(address)
+                            Text(data.address)
                                 .font(Font.custom("Switzer-Regular", size: 13))
                                 .foregroundStyle(Color.subTextClr)
                         }
@@ -60,18 +60,15 @@ struct AddressView: View {
                     }
                 }
                 
-                
             }
-            
+            .frame(maxWidth: .infinity, maxHeight: 100)
+            .background(Color.white)
+            .cornerRadius(16)
         }
-        .frame(maxWidth: .infinity, maxHeight: 100)
-        .background(Color.white)
-        .cornerRadius(16)
+        .buttonStyle(.plain)
     }
 }
 
 #Preview {
-    AddressView(action: {
-        print("helo")
-    }, isEdit: .constant(true))
+    AddressView(data: addressData[0], isSelected: true, isEdit: .constant(true), action: {})
 }

@@ -8,45 +8,50 @@
 import SwiftUI
 
 struct PaymentReusableView: View {
-    var action: () -> Void
-    var image: String = ""
-    var title: String = ""
-    var toggleImage: String = ""
+    let data: CheckoutModel
+    let isSelected: Bool
+    let isLastItem: Bool
+    let action: () -> Void
     
     var body: some View {
-        HStack {
-            HStack(spacing: 16) {
-                ZStack {
-                    Image(image)
+        Button(action: action) {
+            HStack {
+                HStack(spacing: 16) {
+                    Image(data.image)
                         .resizable()
                         .scaledToFit()
-                        .frame(maxWidth: 25, maxHeight: 25)
+                        .frame(width: 25, height: 25)
+                        .frame(width: 44, height: 44)
+                        .background(
+                            RoundedRectangle(cornerRadius: 14)
+                                .fill(Color.buttonShape)
+                        )
                     
+                    Text(data.title)
+                        .font(Font.custom("Switzer-Medium", size: 16))
+                        .foregroundStyle(Color.textClr)
                 }
-                .frame(width: 44, height: 44)
-                .background(Color.buttonShape)
-                .cornerRadius(14)
                 
-                Text(title)
-                    .font(Font.custom("Switzer-Medium", size: 16))
-                    .foregroundStyle(Color.textClr)
+                Spacer()
+                
+                if isLastItem {
+                    Image(systemName: "chevron.right")
+                        .font(.system(size: 18, weight: .medium))
+                } else {
+                    Image(isSelected ? "check" : "uncheck")
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 25, height: 25)
+                }
             }
-            
-            Spacer()
-            
-            Button(action: action) {
-                Image(toggleImage)
-                    .resizable()
-                    .scaledToFit()
-                    .frame(width: 25, height: 25)
-            }
+            .frame(maxWidth: .infinity)
+            .frame(height: 60)
+            .background(Color("AppColor"))
         }
-        .frame(maxWidth: .infinity, maxHeight: 44)
+        .buttonStyle(.plain)
     }
 }
 
 #Preview {
-    PaymentReusableView(action: {
-        print("hi")
-    })
+    PaymentReusableView(data: checkoutData[0], isSelected: true, isLastItem: true, action: {})
 }
