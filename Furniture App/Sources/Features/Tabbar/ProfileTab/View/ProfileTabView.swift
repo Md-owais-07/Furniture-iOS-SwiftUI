@@ -47,10 +47,15 @@ struct ProfileTabView: View {
                 
                 ScrollView(showsIndicators: false) {
                     VStack(spacing: 12) {
-                        Image("user")
-                            .resizable()
-                            .scaledToFit()
+                        Circle()
+                            .fill(.gray.opacity(0.1))
                             .frame(width: 60, height: 60)
+                            .overlay {
+                                Text(String(sessionManager.userName.first ?? "G"))
+                                    .font(.system(size: 28, weight: .bold))
+                                    .foregroundStyle(.black)
+                                    .lineLimit(1)
+                            }
                         
                         VStack(spacing: 4) {
                             Text(sessionManager.userName)
